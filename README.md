@@ -1,2 +1,2 @@
-# just imported project
+# ... just imported project
 
