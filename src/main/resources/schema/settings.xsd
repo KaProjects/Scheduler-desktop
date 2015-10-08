@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="settings" type="settingsType"/>
+
+    <xs:complexType name="settingsType">
+        <xs:sequence>
+            <xs:element name="app_settings"  type="appSettingsType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="user_settings"  type="userSettingsType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="types_settings"  type="typesSettingsType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="appSettingsType">
+        <xs:sequence>
+            <xs:element name="first_use"  type="firstUseType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="firstUseType">
+        <xs:attribute name="value" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="userSettingsType">
+        <xs:sequence>
+            <xs:element name="user_name"  type="valueType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="last_selected"  type="lastSelectedType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ui_scheme"  type="valueType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="language"  type="valueType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="currency"  type="valueType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="valueType">
+        <xs:attribute name="value" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="lastSelectedType">
+        <xs:attribute name="month_id" type="xs:string" use="required"/>
+        <xs:attribute name="day" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="typesSettingsType">
+        <xs:sequence>
+            <xs:element name="item_types"  type="itemTypesType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="task_types"  type="taskTypesType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="global_task_types"  type="gTaskTypesType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="itemTypesType">
+        <xs:sequence>
+            <xs:element name="item_type"  type="typeType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="taskTypesType">
+        <xs:sequence>
+            <xs:element name="task_type"  type="typeType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="gTaskTypesType">
+        <xs:sequence>
+            <xs:element name="g_task_type"  type="typeType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="typeType">
+        <xs:sequence>
+            <xs:element name="description_type"  type="descriptionType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="color" type="xs:string" use="required"/>
+        <xs:attribute name="sign" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="descriptionType">
+        <xs:attribute name="value" type="xs:string" use="required"/>
+    </xs:complexType>
+
+</xs:schema>

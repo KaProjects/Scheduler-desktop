@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="global" type="globalType"/>
+
+    <xs:complexType name="globalType">
+        <xs:sequence>
+            <xs:element name="months"  type="monthsType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="tasks"  type="tasksType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="monthsType">
+        <xs:sequence>
+            <xs:element name="month"  type="monthType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="monthType">
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="order" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="tasksType">
+        <xs:sequence>
+            <xs:element name="task"  type="taskType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="taskType">
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="type" type="xs:string" use="required"/>
+        <xs:attribute name="description" type="xs:string" use="required"/>
+        <xs:attribute name="priority" type="xs:string" use="required"/>
+        <xs:attribute name="finished" type="xs:string" use="required"/>
+    </xs:complexType>
+
+</xs:schema>

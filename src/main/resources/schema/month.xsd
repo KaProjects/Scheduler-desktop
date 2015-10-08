@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="month" type="monthType"/>
+
+    <xs:complexType name="monthType">
+        <xs:sequence>
+            <xs:element name="specification"  type="specificationType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="schedule"  type="scheduleType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="accounting"  type="accountingType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="specificationType">
+        <xs:sequence>
+            <xs:element name="public_free_day"  type="publicFreeDayType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="days" type="xs:string" use="required"/>
+        <xs:attribute name="first_day" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="publicFreeDayType">
+        <xs:attribute name="day" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="scheduleType">
+        <xs:sequence>
+            <xs:element name="task"  type="taskType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="accountingType">
+        <xs:sequence>
+            <xs:element name="item"  type="itemType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="taskType">
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="type" type="xs:string" use="required"/>
+        <xs:attribute name="description" type="xs:string" use="required"/>
+        <xs:attribute name="day" type="xs:string" use="required"/>
+        <xs:attribute name="starts" type="xs:string" use="required"/>
+        <xs:attribute name="duration" type="xs:string" use="required"/>
+        <xs:attribute name="priority" type="xs:string" use="required"/>
+        <xs:attribute name="successful" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="itemType">
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="type" type="xs:string" use="required"/>
+        <xs:attribute name="description" type="xs:string" use="required"/>
+        <xs:attribute name="day" type="xs:string" use="required"/>
+        <xs:attribute name="income" type="xs:string" use="required"/>
+        <xs:attribute name="amount" type="xs:string" use="required"/>
+    </xs:complexType>
+
+</xs:schema>
