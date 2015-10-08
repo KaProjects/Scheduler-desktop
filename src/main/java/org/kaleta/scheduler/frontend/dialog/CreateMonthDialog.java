@@ -27,6 +27,7 @@ public class CreateMonthDialog extends JDialog {
     private JPanel panelImportMonth;
     private List<JCheckBox> publicHolidayCheckBoxList;
     private JCheckBox checkBoxSelectAfter;
+    private JPanel panelPublicHolidays;
 
     public CreateMonthDialog(){
         result = false;
@@ -85,7 +86,7 @@ public class CreateMonthDialog extends JDialog {
             @Override
             public void mouseClicked(MouseEvent e) {
                 String[] defs = getPreviousMonthDefinition();
-                textFieldName.setText(defs[0] + " " + defs[1]);
+                textFieldName.setText(defs[1] + " " + defs[0]);
 
                 spinnerNumberOfDays.setValue(defs[2]);
                 spinnerMonthStartsIn.setValue(defs[3]);
@@ -106,7 +107,7 @@ public class CreateMonthDialog extends JDialog {
             @Override
             public void mouseClicked(MouseEvent e) {
                 String[] defs = getActualMonthDefinition();
-                textFieldName.setText(defs[0] + " " + defs[1]);
+                textFieldName.setText(defs[1] + " " + defs[0]);
 
                 spinnerNumberOfDays.setValue(defs[2]);
                 spinnerMonthStartsIn.setValue(defs[3]);
@@ -127,7 +128,7 @@ public class CreateMonthDialog extends JDialog {
             @Override
             public void mouseClicked(MouseEvent e) {
                 String[] defs = getNextMonthDefinition();
-                textFieldName.setText(defs[0] + " " + defs[1]);
+                textFieldName.setText(defs[1] + " " + defs[0]);
 
                 spinnerNumberOfDays.setValue(defs[2]);
                 spinnerMonthStartsIn.setValue(defs[3]);
@@ -144,7 +145,7 @@ public class CreateMonthDialog extends JDialog {
 
         JLabel labelPublicHolidays = new JLabel("Public Free Days");
         labelPublicHolidays.setFont(new Font(labelPublicHolidays.getFont().getName(), Font.BOLD, 15));
-        JPanel panelPublicHolidays = new JPanel();
+        panelPublicHolidays = new JPanel();
         panelPublicHolidays.setLayout(new GridBagLayout());
 
         publicHolidayCheckBoxList = new ArrayList<>();
@@ -172,10 +173,33 @@ public class CreateMonthDialog extends JDialog {
                 }
 
                 if (x != 0 && y != 0) {
-                    JCheckBox checkBoxDay = new JCheckBox();
+                    JCheckBox checkBoxDay = new JCheckBox(){
+                        @Override
+                        protected void paintComponent(Graphics g) {
+                            super.paintComponent(g);
+
+                            String name = this.getName();
+                            if (name.length() == 1){
+                                name = " " + name;
+                            }
+
+                            if (this.isSelected()){
+                                g.setColor(Color.getHSBColor(120/360f,0.5f,1));
+                                g.fillRect(2,2,this.getWidth() -4,this.getHeight()-4);
+                            } else {
+                                g.setColor(Color.LIGHT_GRAY);
+                                g.fillRect(2,2,this.getWidth() -4,this.getHeight()-4);
+                            }
+
+                            if (this.isEnabled()){
+                                g.setColor(Color.BLACK);
+                                g.drawString(name,4,15);
+                            }
+                        }
+                    };
+
                     int dayIndex = x + 7 * (y - 1) - 1;
                     publicHolidayCheckBoxList.add(dayIndex, checkBoxDay);
-
                     panelPublicHolidays.add(checkBoxDay, c);
                 }
             }
@@ -304,10 +328,12 @@ public class CreateMonthDialog extends JDialog {
                 }
             }
         }
+
+        panelPublicHolidays.repaint();
     }
 
     private String[] getPreviousMonthDefinition(){
-        Calendar now = Calendar.getInstance();
+        Calendar now = Calendar.getInstance(Locale.US);
 
         int previousMonth = now.get(Calendar.MONTH) - 1;
         int year = now.get(Calendar.YEAR);
@@ -329,7 +355,7 @@ public class CreateMonthDialog extends JDialog {
     }
 
     private String[] getActualMonthDefinition(){
-        Calendar now = Calendar.getInstance();
+        Calendar now = Calendar.getInstance(Locale.US);
 
         Calendar actual = new GregorianCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH), 1);
 
@@ -344,7 +370,7 @@ public class CreateMonthDialog extends JDialog {
     }
 
     private String[] getNextMonthDefinition(){
-        Calendar now = Calendar.getInstance();
+        Calendar now = Calendar.getInstance(Locale.US);
 
         int nextMonth = now.get(Calendar.MONTH) + 1;
         int year = now.get(Calendar.YEAR);

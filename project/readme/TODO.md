@@ -31,9 +31,9 @@
 - automatizovane testy
 
 ## Bugs
-+ DescriptionPanel repaint bug (while moving scrollbar) 
++ (NEW) DescriptionPanel repaint bug (while moving scrollbar) 
     - possible solution: repaint method to UI (like in pc4idea)
-+ create Month locale (day, month names) + switch year and month name (aug 2015 -> 2015 aug)
++ (RESOLVED) create Month locale (day, month names) + switch year and month name (aug 2015 -> 2015 aug)
 
 
 
