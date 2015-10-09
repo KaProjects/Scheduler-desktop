@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
@@ -333,7 +334,7 @@ public class CreateMonthDialog extends JDialog {
     }
 
     private String[] getPreviousMonthDefinition(){
-        Calendar now = Calendar.getInstance(Locale.US);
+        Calendar now = Calendar.getInstance();
 
         int previousMonth = now.get(Calendar.MONTH) - 1;
         int year = now.get(Calendar.YEAR);
@@ -344,8 +345,10 @@ public class CreateMonthDialog extends JDialog {
 
         Calendar previous = new GregorianCalendar(year, previousMonth, 1);
 
-        String[] monthNames = new DateFormatSymbols().getMonths();
-        String[] dayNames = new DateFormatSymbols().getWeekdays();
+        DateFormatSymbols symbols = new SimpleDateFormat("yyyyMMdd", Locale.ENGLISH).getDateFormatSymbols();
+        String[] monthNames = symbols.getMonths();
+        String[] dayNames = symbols.getWeekdays();
+
 
         String[] output = new String[]{monthNames[previousMonth],
                 String.valueOf(year),
@@ -355,12 +358,13 @@ public class CreateMonthDialog extends JDialog {
     }
 
     private String[] getActualMonthDefinition(){
-        Calendar now = Calendar.getInstance(Locale.US);
+        Calendar now = Calendar.getInstance();
 
         Calendar actual = new GregorianCalendar(now.get(Calendar.YEAR), now.get(Calendar.MONTH), 1);
 
-        String[] monthNames = new DateFormatSymbols().getMonths();
-        String[] dayNames = new DateFormatSymbols().getWeekdays();
+        DateFormatSymbols symbols = new SimpleDateFormat("yyyyMMdd", Locale.ENGLISH).getDateFormatSymbols();
+        String[] monthNames = symbols.getMonths();
+        String[] dayNames = symbols.getWeekdays();
 
         String[] output = new String[]{monthNames[actual.get(Calendar.MONTH)],
                 String.valueOf(actual.get(Calendar.YEAR)),
@@ -370,7 +374,7 @@ public class CreateMonthDialog extends JDialog {
     }
 
     private String[] getNextMonthDefinition(){
-        Calendar now = Calendar.getInstance(Locale.US);
+        Calendar now = Calendar.getInstance();
 
         int nextMonth = now.get(Calendar.MONTH) + 1;
         int year = now.get(Calendar.YEAR);
@@ -381,8 +385,9 @@ public class CreateMonthDialog extends JDialog {
 
         Calendar next = new GregorianCalendar(year, nextMonth, 1);
 
-        String[] monthNames = new DateFormatSymbols().getMonths();
-        String[] dayNames = new DateFormatSymbols().getWeekdays();
+        DateFormatSymbols symbols = new SimpleDateFormat("yyyyMMdd", Locale.ENGLISH).getDateFormatSymbols();
+        String[] monthNames = symbols.getMonths();
+        String[] dayNames = symbols.getWeekdays();
 
         String[] output = new String[]{monthNames[nextMonth],
                 String.valueOf(year),
