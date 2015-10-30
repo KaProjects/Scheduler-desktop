@@ -1,11 +1,10 @@
-package org.kaleta.scheduler.frontend.day;
+package org.kaleta.scheduler.frontend.panel;
 
 import org.kaleta.scheduler.backend.entity.Time;
-import org.kaleta.scheduler.frontend.common.ComponentAction;
+import org.kaleta.scheduler.frontend.ConfigurationAction;
 import org.kaleta.scheduler.frontend.GuiModel;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -129,14 +128,14 @@ public class SchedulePanel extends JPanel {
 
 
 
-        this.getActionMap().put(GuiModel.DAY_CHANGED, new ComponentAction() {
-            @Override
-            protected void actionPerformed(GuiModel guiModel) {
-                if (model == null) {
-                    model = guiModel;
-                }
-
-            }
-        });
+//        this.getActionMap().put(GuiModel.DAY_CHANGED, new ConfigurationAction() {
+//            @Override
+//            protected void actionPerformed(GuiModel guiModel) {
+//                if (model == null) {
+//                    model = guiModel;
+//                }
+//
+//            }
+//        });
     }
 }

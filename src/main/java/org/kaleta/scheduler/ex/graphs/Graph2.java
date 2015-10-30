@@ -1,4 +1,4 @@
-package org.kaleta.scheduler.graphs;
+package org.kaleta.scheduler.ex.graphs;
 
 import org.kaleta.scheduler.backend.entity.Item;
 

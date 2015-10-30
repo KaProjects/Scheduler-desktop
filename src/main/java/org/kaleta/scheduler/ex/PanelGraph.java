@@ -1,10 +1,10 @@
 package org.kaleta.scheduler.ex;
 
 import org.kaleta.scheduler.backend.entity.Item;
-import org.kaleta.scheduler.graphs.Graph0;
-import org.kaleta.scheduler.graphs.Graph1;
-import org.kaleta.scheduler.graphs.Graph2;
-import org.kaleta.scheduler.graphs.Graph3;
+import org.kaleta.scheduler.ex.graphs.Graph0;
+import org.kaleta.scheduler.ex.graphs.Graph1;
+import org.kaleta.scheduler.ex.graphs.Graph2;
+import org.kaleta.scheduler.ex.graphs.Graph3;
 
 import javax.swing.*;
 import java.awt.*;

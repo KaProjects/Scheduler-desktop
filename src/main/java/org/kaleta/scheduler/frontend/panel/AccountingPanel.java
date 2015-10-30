@@ -1,9 +1,9 @@
-package org.kaleta.scheduler.frontend.day;
+package org.kaleta.scheduler.frontend.panel;
 
 import org.kaleta.scheduler.backend.entity.Day;
 import org.kaleta.scheduler.backend.entity.Item;
 import org.kaleta.scheduler.frontend.GuiModel;
-import org.kaleta.scheduler.frontend.common.ComponentAction;
+import org.kaleta.scheduler.frontend.ConfigurationAction;
 import org.kaleta.scheduler.frontend.dialog.AddEditItemDialog;
 
 import javax.swing.*;
@@ -30,7 +30,7 @@ public class AccountingPanel extends JPanel{
 
     private void initComponents(){
         tableAccounting = new JTable();
-        tableAccounting.setModel(new AccountingTableModel());
+        tableAccounting.setModel(new AccountingPanelTableModel());
         tableAccounting.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tableAccounting.setRowSelectionAllowed(true);
         tableAccounting.setColumnSelectionAllowed(false);
@@ -39,7 +39,7 @@ public class AccountingPanel extends JPanel{
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                Color color = ((AccountingTableModel) table.getModel()).getRowColor(row);
+                Color color = ((AccountingPanelTableModel) table.getModel()).getRowColor(row);
                 if (isSelected){
                     color = color.darker();
                 }
@@ -143,7 +143,7 @@ public class AccountingPanel extends JPanel{
                 .addComponent(buttonAdd));
 
 
-        this.getActionMap().put(GuiModel.DAY_CHANGED, new ComponentAction() {
+        this.getActionMap().put(GuiModel.DAY_CHANGED, new ConfigurationAction() {
             @Override
             protected void actionPerformed(GuiModel guiModel) {
                 if (model == null) {
@@ -151,7 +151,7 @@ public class AccountingPanel extends JPanel{
                 }
 
                 Day day = model.getDay(model.getSelectedDayNumber());
-                ((AccountingTableModel) tableAccounting.getModel()).setData(day.getItems());
+                ((AccountingPanelTableModel) tableAccounting.getModel()).setData(day.getItems());
                 tableAccounting.clearSelection();
                 tableAccounting.revalidate();
                 tableAccounting.repaint();

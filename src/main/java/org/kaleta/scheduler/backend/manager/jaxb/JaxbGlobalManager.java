@@ -53,7 +53,7 @@ public class JaxbGlobalManager implements GlobalManager {
                     (org.kaleta.scheduler.backend.manager.jaxb.model.Global) unmarshaller.unmarshal(file);
             global = ModelUtil.transformGlobalToData(model);
         } catch (Exception e) {
-            throw new ManagerException(e);
+            throw new ManagerException("Error while retrieving global data: ",e);
         }
         return global;
     }
@@ -76,7 +76,7 @@ public class JaxbGlobalManager implements GlobalManager {
             marshaller.marshal(model,new DefaultHandler());
             marshaller.marshal(model, file);
         } catch (Exception e) {
-            throw new ManagerException(e);
+            throw new ManagerException("Error while updating global data: ",e);
         }
     }
 

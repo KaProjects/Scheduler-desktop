@@ -1,7 +1,6 @@
 package org.kaleta.scheduler.frontend.dialog;
 
 import org.kaleta.scheduler.backend.entity.Month;
-import org.kaleta.scheduler.frontend.month.DayPreviewPanel;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package org.kaleta.scheduler.backend.service;
+package org.kaleta.scheduler.service;
 
 import org.kaleta.scheduler.backend.entity.Global;
 import org.kaleta.scheduler.backend.entity.Item;
@@ -20,67 +20,37 @@ import java.util.Map;
  * Date: 23.7.2015
  */
 public class Service {
-    /*TODO service methods + later refactoring(month,global,settings,???,...)
-    * create new m
-    * get m
-    * get all m
-    * get tasks for day
-    * get items for day
-    * get days for m
-    * get settings
-    * change settings,...
-    * get item/task types and description for them
-    * update some part e.g add/update/change task/item/freeday to day in month
-    * add/get,change,delete global tasks
-    * or completly any acction
-    *
-    * or more thinking about this (including frotnend)
-    * */
 
-    /**
-     * TODO documentation
-     */
     public void createSettings() {
         try {
             SettingsManager manager = new JaxbSettingsManager();
             manager.createSettings();
         } catch (ManagerException e) {
-            Initializer.LOG.severe("Settings file creation failed!\n" + e.getMessage());
+            Initializer.LOG.severe(e.getMessage());
             throw new ServiceFailureException(e);
         }
     }
 
-    /**
-     * TODO documentation
-     */
     public void createGlobal() {
         try {
             GlobalManager manager = new JaxbGlobalManager();
             manager.createGlobal();
         } catch (ManagerException e) {
-            Initializer.LOG.severe("Global file creation failed!\n" + e.getMessage());
+            Initializer.LOG.severe(e.getMessage());
             throw new ServiceFailureException(e);
         }
     }
 
-    /**
-     * TODO documentation
-     */
     public void createMonth(Month month) {
         try {
             MonthManager manager = new JaxbMonthManager();
             manager.createMonth(month);
         } catch (ManagerException e) {
-            Initializer.LOG.severe("Error while creating new month!\n" + e.getMessage());
+            Initializer.LOG.severe(e.getMessage());
             throw new ServiceFailureException(e);
         }
     }
 
-    /**
-     * TODO documentation
-     *
-     * @return
-     */
     public boolean isFirstUse() {
         try {
             SettingsManager manager = new JaxbSettingsManager();
@@ -92,62 +62,42 @@ public class Service {
         }
     }
 
-    /**
-     * TODO documentation
-     *
-     * @param settings
-     */
     public void updateSettings(Settings settings) {
         try {
             SettingsManager manager = new JaxbSettingsManager();
             manager.updateSettings(settings);
         } catch (ManagerException e) {
-            Initializer.LOG.severe("Error while updating settings!\n" + e.getMessage());
+            Initializer.LOG.severe(e.getMessage());
             throw new ServiceFailureException(e);
         }
     }
 
-    /**
-     * TODO documentation
-     *
-     * @param global
-     */
     public void updateGlobal(Global global) {
         try {
             GlobalManager manager = new JaxbGlobalManager();
             manager.updateGlobal(global);
         } catch (ManagerException e) {
-            Initializer.LOG.severe("Error while updating global data!\n" + e.getMessage());
+            Initializer.LOG.severe(e.getMessage());
             throw new ServiceFailureException(e);
         }
     }
 
-    /**
-     * TODO documentation
-     *
-     * @param month
-     */
     public void updateMonth(Month month) {
         try {
             MonthManager manager = new JaxbMonthManager();
             manager.updateMonth(month);
         } catch (ManagerException e) {
-            Initializer.LOG.severe("Error while updating month with id=\"" + month.getId() + "\"!\n" + e.getMessage());
+            Initializer.LOG.severe(e.getMessage());
             throw new ServiceFailureException(e);
         }
     }
 
-    /**
-     * TODO documentation
-     *
-     * @return
-     */
     public Settings getSettings() {
         try {
             SettingsManager manager = new JaxbSettingsManager();
             return manager.retrieveSettings();
         } catch (ManagerException e) {
-            Initializer.LOG.severe("Error while retrieving settings!\n" + e.getMessage());
+            Initializer.LOG.severe(e.getMessage());
             throw new ServiceFailureException(e);
         }
     }
@@ -161,22 +111,17 @@ public class Service {
             MonthManager manager = new JaxbMonthManager();
             return manager.retrieveMonth(monthId);
         } catch (ManagerException e) {
-            Initializer.LOG.severe("Error while retrieving month with id=" + monthId + "!\n" + e.getMessage());
+            Initializer.LOG.severe(e.getMessage());
             throw new ServiceFailureException(e);
         }
     }
 
-    /**
-     * TODO documentation
-     *
-     * @return
-     */
     public Global getGlobal() {
         try {
             GlobalManager manager = new JaxbGlobalManager();
             return manager.retrieveGlobal();
         } catch (ManagerException e) {
-            Initializer.LOG.severe("Error while retrieving global data!\n" + e.getMessage());
+            Initializer.LOG.severe(e.getMessage());
             throw new ServiceFailureException(e);
         }
     }
@@ -222,4 +167,32 @@ public class Service {
             throw new ServiceFailureException(e);
         }
     }
+
+    // TODO ///////////////////// new methods  ^remove later^ (maybe excpet isFirst use, and init creations)
+
+    /**
+     * TODO documentation
+     * @return
+     */
+    public MonthService getMonthService(){
+        return new MonthService();
+    }
+
+    /**
+     * TODO documentation
+     * @return
+     */
+    public DayService getDayService(){
+        return new DayService();
+    }
+
+    /**
+     * TODO documentation
+     * @return
+     */
+    public ItemService getItemService(){
+        return new ItemService();
+    }
+
+
 }

@@ -51,7 +51,7 @@ public class JaxbMonthManager implements MonthManager {
                     (org.kaleta.scheduler.backend.manager.jaxb.model.Month) unmarshaller.unmarshal(file);
             month = ModelUtil.transformMonthToData(model);
         } catch (Exception e) {
-            throw new ManagerException(e);
+            throw new ManagerException("Error while retrieving month with id=" + id + ": ",e);
         }
         return month;
     }
@@ -74,7 +74,7 @@ public class JaxbMonthManager implements MonthManager {
             marshaller.marshal(model,new DefaultHandler());
             marshaller.marshal(model, file);
         } catch (Exception e) {
-            throw new ManagerException(e);
+            throw new ManagerException("Error while updating month with id=\"" + month.getId() + "\": ",e);
         }
     }
 

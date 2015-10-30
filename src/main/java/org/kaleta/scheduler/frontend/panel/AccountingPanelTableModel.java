@@ -1,4 +1,4 @@
-package org.kaleta.scheduler.frontend.day;
+package org.kaleta.scheduler.frontend.panel;
 
 import org.kaleta.scheduler.backend.entity.Item;
 
@@ -10,10 +10,10 @@ import java.util.List;
 /**
  * Created by Stanislav Kaleta on 14.09.2015.
  */
-public class AccountingTableModel  extends AbstractTableModel{
+public class AccountingPanelTableModel extends AbstractTableModel{
     private List<Item> rowData;
 
-    public AccountingTableModel(){
+    public AccountingPanelTableModel(){
         rowData = new ArrayList<>();
     }
 

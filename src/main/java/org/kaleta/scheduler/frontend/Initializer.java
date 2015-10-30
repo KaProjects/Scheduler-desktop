@@ -1,8 +1,8 @@
 package org.kaleta.scheduler.frontend;
 
 import org.kaleta.scheduler.backend.entity.*;
-import org.kaleta.scheduler.backend.service.Service;
-import org.kaleta.scheduler.backend.service.ServiceFailureException;
+import org.kaleta.scheduler.service.Service;
+import org.kaleta.scheduler.service.ServiceFailureException;
 import org.kaleta.scheduler.frontend.common.ErrorDialog;
 import org.kaleta.scheduler.frontend.common.LogFormatter;
 import org.kaleta.scheduler.frontend.wizard.WizardDialog;

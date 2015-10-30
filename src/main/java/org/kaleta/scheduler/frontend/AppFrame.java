@@ -1,15 +1,15 @@
 package org.kaleta.scheduler.frontend;
 
 import org.kaleta.scheduler.backend.entity.*;
-import org.kaleta.scheduler.backend.service.Service;
-import org.kaleta.scheduler.backend.service.ServiceFailureException;
-import org.kaleta.scheduler.frontend.day.AccountingPanel;
-import org.kaleta.scheduler.frontend.day.SchedulePanel;
+import org.kaleta.scheduler.frontend.panel.DayPreviewPanel;
+import org.kaleta.scheduler.service.Service;
+import org.kaleta.scheduler.service.ServiceFailureException;
+import org.kaleta.scheduler.frontend.panel.AccountingPanel;
+import org.kaleta.scheduler.frontend.panel.SchedulePanel;
 import org.kaleta.scheduler.frontend.dialog.CreateMonthDialog;
 import org.kaleta.scheduler.frontend.dialog.SelectMonthDialog;
 import org.kaleta.scheduler.frontend.dialog.SettingsDialog;
-import org.kaleta.scheduler.frontend.global.GlobalPanel;
-import org.kaleta.scheduler.frontend.month.MonthPanel;
+import org.kaleta.scheduler.frontend.panel.GlobalPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by Stanislav Kaleta on 06.08.2015.
  */
-public class AppFrame extends JFrame implements GuiModel{
+public class AppFrame extends JFrame implements Configuration{
     private Service service;
     private int selectedDay;
     private int selectedMonthId;
@@ -33,6 +33,7 @@ public class AppFrame extends JFrame implements GuiModel{
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         initComponents();
+        update(Configuration.INIT_CONFIG);
         applySettings();
 
         this.pack();
@@ -51,8 +52,24 @@ public class AppFrame extends JFrame implements GuiModel{
         GlobalPanel globalPanel = new GlobalPanel();
         globalPanel.setBackground(Color.YELLOW);
 
-        MonthPanel monthPanel = new MonthPanel();
+        JPanel monthPanel = new JPanel();
         monthPanel.setBackground(Color.BLUE);
+        monthPanel.setLayout(new GridBagLayout());
+
+        for(int y=1;y<=6;y++){
+            for(int x =1;x<=7;x++){
+                GridBagConstraints c = new GridBagConstraints();
+                c.gridx = x;
+                c.gridy = y;
+                c.gridwidth = 1;
+                c.gridheight = 1;
+                c.weightx = 0;
+                c.weighty = 0;
+
+                DayPreviewPanel dayPreviewPanel = new DayPreviewPanel(new Point(x,y));
+                monthPanel.add(dayPreviewPanel, c);
+            }
+        }
 
         GroupLayout layout = new GroupLayout(this.getContentPane());
         this.getContentPane().setLayout(layout);
@@ -190,20 +207,20 @@ public class AppFrame extends JFrame implements GuiModel{
                 Map<Integer, Integer> orders = getMonthsOrder();
                 String[] monthNames = new String[orders.size()];
                 Integer[] monthIds = new Integer[orders.size()];
-                int actualySelectedMonthIndex = -1;
+                int actuallySelectedMonthIndex = -1;
                 int index = 0;
                 for (Integer key : orders.keySet()){
                     monthNames[index] = getMonthName(key);
                     monthIds[index] = key;
 
                     if(key == getSelectedMonthId()){
-                        actualySelectedMonthIndex = index;
+                        actuallySelectedMonthIndex = index;
                     }
 
                     index++;
                 }
 
-                dialog.setMonthNames(monthNames, actualySelectedMonthIndex);
+                dialog.setMonthNames(monthNames, actuallySelectedMonthIndex);
                 dialog.setLocationRelativeTo(AppFrame.this);
                 dialog.setVisible(true);
 
@@ -282,13 +299,13 @@ public class AppFrame extends JFrame implements GuiModel{
         int settingsSelectedMonthId = settings.getLastMonthSelectedId();
         if (settingsSelectedMonthId != selectedMonthId){
             selectedMonthId = settingsSelectedMonthId;
-            update(GuiModel.MONTH_CHANGED);
+            update(Configuration.MONTH_CHANGED);
         }
 
         int settingsSelectedDay = settings.getLastDaySelected();
         if (settingsSelectedDay != selectedDay){
             selectedDay = settingsSelectedDay;
-            update(GuiModel.DAY_CHANGED);
+            update(Configuration.DAY_CHANGED);
         }
     }
 
@@ -321,19 +338,6 @@ public class AppFrame extends JFrame implements GuiModel{
     }
 
     @Override
-    public Map<Integer, Integer> getMonthsOrder() {
-        Global global = service.getGlobal();
-        /*TODO maybe sort by order*/
-        return global.getMonths();
-    }
-
-    @Override
-    public String getMonthName(int monthId) {
-        Month month = service.getMonth(monthId);
-        return month.getName();
-    }
-
-    @Override
     public void selectMonth(int monthId) {
         selectedMonthId = monthId;
 
@@ -341,58 +345,9 @@ public class AppFrame extends JFrame implements GuiModel{
         settings.setLastMonthSelectedId(monthId);
         service.updateSettings(settings);
 
-        update(GuiModel.MONTH_CHANGED);
+        update(Configuration.MONTH_CHANGED);
 
         selectDay(1);
-    }
-
-    @Override
-    public Day getDayAt(Point position) {
-        Month month = service.getMonth(selectedMonthId);
-
-        int dayNumber = 7 * (position.y - 1) + position.x - (month.getDayStartsWith() - 1);
-        if (dayNumber < 1){
-            dayNumber = -1;
-        }
-        if (dayNumber > month.getDaysNumber()){
-            dayNumber = -1;
-        }
-
-        return getDay(dayNumber);
-    }
-
-    @Override
-    public Day getDay(int dayNumber) {
-        Day day = new Day();
-
-        day.setDayNumber(dayNumber);
-        if (dayNumber == -1){
-            return day;
-        }
-
-        Month month = service.getMonth(selectedMonthId);
-
-        for (Item item : month.getItems()){
-            if (item.getDay() == dayNumber){
-                day.getItems().add(item);
-            }
-        }
-
-        for (Task task : month.getTasks()){
-            if (task.getDay() == dayNumber){
-                day.getTasks().add(task);
-            }
-        }
-
-        day.setPublicFreeDay(Boolean.FALSE);
-        for (Integer integer : month.getPublicFreeDays()){
-            if (integer == dayNumber){
-                day.setPublicFreeDay(Boolean.TRUE);
-                break;
-            }
-        }
-
-        return day;
     }
 
     @Override
@@ -408,92 +363,6 @@ public class AppFrame extends JFrame implements GuiModel{
         settings.setLastDaySelected(dayNumber);
         service.updateSettings(settings);
 
-        update(GuiModel.DAY_CHANGED);
-    }
-
-    @Override
-    public List<UserType> getItemTypes() {
-        Settings settings = service.getSettings();
-        return settings.getItemTypes();
-    }
-
-    @Override
-    public void addItem(Item item) {
-        Month month = service.getMonth(selectedMonthId);
-
-        int newId = 0;
-        for (Item existingItem : month.getItems()){
-            if (existingItem.getId() > newId){
-                newId = existingItem.getId();
-            }
-        }
-        newId = newId + 1;
-
-        item.setDay(selectedDay);
-        item.setId(newId);
-
-        month.getItems().add(item);
-
-        service.updateMonth(month);
-
-        update(GuiModel.DAY_CHANGED);
-    }
-
-    @Override
-    public List<Item> getRecentlyUsedItems() {
-        int counter = 0;
-        Map<Item,Integer> recentlyUsed = new HashMap<>();
-        for (Item item : service.getMonth(selectedMonthId).getItems()){
-            if (recentlyUsed.size() == 0){
-                recentlyUsed.put(item, 1);
-                counter = 1;
-            } else {
-                Set<Item> recentItems = new HashSet<>();
-                recentItems.addAll(recentlyUsed.keySet());
-                boolean set = false;
-                for (Item setItem : recentItems){
-                    if (setItem.getIncome().equals(item.getIncome())
-                            && setItem.getType().equals(item.getType())
-                            && setItem.getDescription().equals(item.getDescription())
-                            && setItem.getAmount().equals(item.getAmount())){
-                        int nUsed = recentlyUsed.get(setItem) + 1;
-                        recentlyUsed.put(setItem,nUsed);
-                        if (nUsed > counter){
-                            counter = nUsed;
-                        }
-                        set = true;
-                        break;
-                    }
-                }
-                if (!set){
-                    recentlyUsed.put(item, 1);
-                }
-            }
-        }
-
-        List<Item> subRecentlyUsed = new ArrayList<>();
-        int subEdge = 5;
-        while (subEdge > 0 && counter > 0){
-            for (Item item : recentlyUsed.keySet()){
-                if (recentlyUsed.get(item).equals(counter) && subEdge > 0){
-                    subRecentlyUsed.add(item);
-                    subEdge--;
-                }
-            }
-            counter--;
-        }
-        return subRecentlyUsed;
-    }
-
-    @Override
-    public void updateItem(Item item) {
-        service.updateItem(item, selectedMonthId);
-    }
-
-    @Override
-    public void deleteItem(Item item) {
-        service.deleteItem(item, selectedMonthId);
-
-        update(GuiModel.DAY_CHANGED);
+        update(Configuration.DAY_CHANGED);
     }
 }

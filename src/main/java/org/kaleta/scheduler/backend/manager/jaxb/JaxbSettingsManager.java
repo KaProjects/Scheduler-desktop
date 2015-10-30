@@ -59,7 +59,7 @@ public class JaxbSettingsManager implements SettingsManager {
                     (org.kaleta.scheduler.backend.manager.jaxb.model.Settings) unmarshaller.unmarshal(file);
             settings = ModelUtil.transformSettingsToData(model);
         } catch (Exception e) {
-            throw new ManagerException(e);
+            throw new ManagerException("Error while retrieving settings: ",e);
         }
         return settings;
     }
@@ -82,7 +82,7 @@ public class JaxbSettingsManager implements SettingsManager {
             marshaller.marshal(model,new DefaultHandler());
             marshaller.marshal(model, file);
         } catch (Exception e) {
-            throw new ManagerException(e);
+            throw new ManagerException("Error while updating settings: ",e);
         }
     }
 
