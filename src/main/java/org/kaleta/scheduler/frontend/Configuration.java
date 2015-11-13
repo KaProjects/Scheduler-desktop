@@ -20,6 +20,11 @@ public interface Configuration {
 
     /**
      * TODO documentation
+     */
+    public void applySettings();
+
+    /**
+     * TODO documentation
      * @return
      */
     public int getSelectedMonthId();
@@ -34,7 +39,7 @@ public interface Configuration {
      * TODO documentation
      * @return
      */
-    public int getSelectedDayNumber();//C
+    public int getSelectedDayNumber();
 
     /**
      * TODO documentation

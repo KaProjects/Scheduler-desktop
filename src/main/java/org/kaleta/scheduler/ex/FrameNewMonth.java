@@ -3,7 +3,8 @@ package org.kaleta.scheduler.ex;
 import org.kaleta.scheduler.backend.entity.Month;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;

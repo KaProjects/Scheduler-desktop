@@ -7,7 +7,10 @@ import org.kaleta.scheduler.ex.graphs.Graph2;
 import org.kaleta.scheduler.ex.graphs.Graph3;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.util.List;
 
 /**

@@ -2,7 +2,7 @@ package org.kaleta.scheduler.backend.manager.jaxb.model;
 
 import org.kaleta.scheduler.backend.entity.*;
 
-import java.awt.*;
+import java.awt.Color;
 import java.math.BigDecimal;
 
 /**

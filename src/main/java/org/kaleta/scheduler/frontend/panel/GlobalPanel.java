@@ -2,13 +2,13 @@ package org.kaleta.scheduler.frontend.panel;
 
 import org.kaleta.scheduler.frontend.Configurable;
 import org.kaleta.scheduler.frontend.Configuration;
-import org.kaleta.scheduler.frontend.action.CommonInitConfigurableAction;
-import org.kaleta.scheduler.frontend.action.GlobalPanelMonthArrowClicked;
-import org.kaleta.scheduler.frontend.action.GlobalPanelMonthChangedAction;
-import org.kaleta.scheduler.frontend.action.GlobalPanelMonthNameClicked;
+import org.kaleta.scheduler.frontend.action.InitConfigurableAction;
+import org.kaleta.scheduler.frontend.action.configuration.GlobalPanelMonthChanged;
+import org.kaleta.scheduler.frontend.action.mouse.GlobalPanelMonthArrowClicked;
+import org.kaleta.scheduler.frontend.action.mouse.GlobalPanelMonthNameClicked;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Font;
 
 /**
  * TODO month handling maybe to dif. panel
@@ -26,7 +26,7 @@ public class GlobalPanel extends JPanel implements Configurable{
         //U+25C0 (Black left-pointing triangle ◀)
         //U+25B6 (Black right-pointing triangle ▶)
 
-        JLabel labelBack = new JLabel("◀");
+        JLabel labelBack = new JLabel("\u25C0");
         labelBack.setFont(new Font(labelBack.getFont().getName(), Font.PLAIN, 20));
         labelBack.addMouseListener(new GlobalPanelMonthArrowClicked(this, false));
         labelBack.setVisible(false);
@@ -37,14 +37,14 @@ public class GlobalPanel extends JPanel implements Configurable{
         labelMonth.addMouseListener(new GlobalPanelMonthNameClicked(this, labelMonth));
         this.add(labelMonth);
 
-        JLabel labelNext = new JLabel("▶");
+        JLabel labelNext = new JLabel("\u25B6");
         labelNext.setFont(new Font(labelNext.getFont().getName(),Font.PLAIN,20));
         labelNext.addMouseListener(new GlobalPanelMonthArrowClicked(this, true));
         labelNext.setVisible(false);
         this.add(labelNext);
 
-        this.getActionMap().put(Configuration.INIT_CONFIG, new CommonInitConfigurableAction(this));
-        this.getActionMap().put(Configuration.MONTH_CHANGED, new GlobalPanelMonthChangedAction(this,labelBack,labelMonth,labelNext));
+        this.getActionMap().put(Configuration.INIT_CONFIG, new InitConfigurableAction(this));
+        this.getActionMap().put(Configuration.MONTH_CHANGED, new GlobalPanelMonthChanged(this,labelBack,labelMonth,labelNext));
     }
 
     @Override

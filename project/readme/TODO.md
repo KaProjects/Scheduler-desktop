@@ -1,13 +1,5 @@
 ## Versions
 ### 2.0
-+ rework frontend
-    - rework AccountingPanel + ItemService
-    - rework initMenuBar
-    - check GlobalPanel func.
-    - try DayPreview without fixed size
-    - check DayPreview func.
-    - check former MonthPanel func.        
-    
 + (prerobit android appku(an.19) a tu pridat moznost importovania z nej
 + solve importing data from version 1.y
 + dorobit front-end
@@ -15,6 +7,7 @@
     - check all user inputs (in dialogs) + react to them (maybe beans or something)
 + check ServiceFailureEx. in AppFrame + react to it (event-thread)
 + solve TODOs
++ nejake ikonky pre menu
 + release:
     - Scheduler-2.0.jar -> project/production
     - git release workflow(branch/tag/merge) + check documentation and code adjustment (unnecessary blank rows, spaces, etc.) 
@@ -31,7 +24,7 @@
     - vyriesit pridavanie opakujucich sa taskov (napr. menu-Task-Add Repeating Task-zaskrtnut dni(zo selectnuteho mesiaca) kedy)
     - design & impl. global panel (including month control)
 + migrate strings(commands, messages, ...), colors, ... to commons/Colors Strings.Message Strings.Command etc. <- better management
-
++ impl. user statistics + improve logging (more info)
 ## Ideas
 - dorobit dalsie veci ako edit month, html documentation,...
 - moznost exportovat tasky do img/pdf na vytlacenie
@@ -41,8 +34,10 @@
 
 
 ## Bugs
-+ (NEW) DescriptionPanel repaint bug (while moving scrollbar) 
-    - possible solution: repaint method to UI (like in pc4idea)
++ (NEW) l&f problems:: 
+    - settings-types-DescriptionPanel repaint bug (while moving scrollbar)  
+    -  alignments 
+    -  "AWT-EventQueue-0" java.lang.NullPointerException after schema change
 
 
 

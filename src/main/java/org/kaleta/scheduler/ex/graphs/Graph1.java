@@ -3,8 +3,10 @@ package org.kaleta.scheduler.ex.graphs;
 import org.kaleta.scheduler.backend.entity.Item;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.

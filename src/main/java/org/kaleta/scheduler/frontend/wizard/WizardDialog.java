@@ -1,11 +1,10 @@
 package org.kaleta.scheduler.frontend.wizard;
 
-import org.kaleta.scheduler.frontend.Initializer;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;

@@ -14,7 +14,44 @@ import java.util.Map;
 /**
  * Created by Stanislav Kaleta on 30.10.2015.
  */
-class MonthService {
+public class MonthService {
+
+    MonthService(){
+        // package private class
+    }
+
+    /**
+     * TODO documentation
+     * @param month
+     */
+    public void createMonth(Month month) {
+        try {
+            GlobalManager globalManager = new JaxbGlobalManager();
+            Global global = globalManager.retrieveGlobal();
+            int lastId = 0;
+            int lastOrder = 0;
+            for (Integer usedId : global.getMonths().keySet()){
+                if (usedId > lastId){
+                    lastId = usedId;
+                }
+                if (global.getMonths().get(usedId) > lastOrder){
+                    lastOrder = global.getMonths().get(usedId);
+                }
+            }
+            int newId = lastId + 1;
+            int newOrder = lastOrder + 1;
+            month.setId(newId);
+
+            MonthManager manager = new JaxbMonthManager();
+            manager.createMonth(month);
+
+            global.getMonths().put(newId, newOrder);
+            globalManager.updateGlobal(global);
+        } catch (ManagerException e) {
+            Initializer.LOG.severe(e.getMessage());
+            throw new ServiceFailureException(e);
+        }
+    }
 
     /**
      * TODO documentation

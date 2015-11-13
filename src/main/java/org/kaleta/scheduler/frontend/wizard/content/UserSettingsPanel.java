@@ -1,7 +1,7 @@
 package org.kaleta.scheduler.frontend.wizard.content;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Font;
 
 /**
  * Author: Stanislav Kaleta
@@ -32,6 +32,8 @@ public class UserSettingsPanel extends JPanel implements WizardPanel {
             lookAndFeelNames[i] = lookAndFeelInfos[i].getName();
         }
         comboBoxUiScheme = new JComboBox<>(lookAndFeelNames);
+        comboBoxUiScheme.setSelectedIndex(0);
+        comboBoxUiScheme.setEnabled(false);
 
         JLabel labelCurrency = new JLabel("Currency");
         labelCurrency.setFont(font);

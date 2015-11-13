@@ -9,10 +9,10 @@ import java.awt.event.ActionEvent;
 /**
  * Created by Stanislav Kaleta on 30.10.2015.
  */
-public class CommonInitConfigurableAction extends AbstractAction {
+public class InitConfigurableAction extends AbstractAction {
     private Configurable configurable;
 
-    public CommonInitConfigurableAction(Configurable configurable){
+    public InitConfigurableAction(Configurable configurable){
         this.configurable = configurable;
     }
 

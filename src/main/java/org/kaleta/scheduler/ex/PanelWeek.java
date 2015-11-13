@@ -1,8 +1,8 @@
 package org.kaleta.scheduler.ex;
 
 import org.kaleta.scheduler.backend.entity.Day;
-import org.kaleta.scheduler.backend.entity.Month;
 import org.kaleta.scheduler.backend.entity.Item;
+import org.kaleta.scheduler.backend.entity.Month;
 import org.kaleta.scheduler.backend.entity.Task;
 
 import javax.swing.*;

@@ -1,35 +1,33 @@
 package org.kaleta.scheduler.frontend.panel;
 
-import org.kaleta.scheduler.backend.entity.Day;
-import org.kaleta.scheduler.backend.entity.Item;
-import org.kaleta.scheduler.frontend.GuiModel;
-import org.kaleta.scheduler.frontend.ConfigurationAction;
-import org.kaleta.scheduler.frontend.dialog.AddEditItemDialog;
+import org.kaleta.scheduler.frontend.Configurable;
+import org.kaleta.scheduler.frontend.Configuration;
+import org.kaleta.scheduler.frontend.action.InitConfigurableAction;
+import org.kaleta.scheduler.frontend.action.configuration.AccountingPanelDayChanged;
+import org.kaleta.scheduler.frontend.action.keyboard.AccountingPanelTableDelete;
+import org.kaleta.scheduler.frontend.action.mouse.AccountingPanelAddItemClicked;
+import org.kaleta.scheduler.frontend.action.mouse.AccountingPanelTableClicked;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 
 /**
  * Created by Stanislav Kaleta on 06.08.2015.
  */
-public class AccountingPanel extends JPanel{
-    private GuiModel model;
+public class AccountingPanel extends JPanel implements Configurable {
+    private Configuration configuration;
 
-    private JTable tableAccounting;
 
     public AccountingPanel(){
         initComponents();
     }
 
     private void initComponents(){
-        tableAccounting = new JTable();
+        JTable tableAccounting = new JTable();
         tableAccounting.setModel(new AccountingPanelTableModel());
         tableAccounting.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tableAccounting.setRowSelectionAllowed(true);
@@ -53,10 +51,16 @@ public class AccountingPanel extends JPanel{
         TableColumnModel columnModel = tableAccounting.getColumnModel();
         columnModel.getColumn(0).setMinWidth(30);
         columnModel.getColumn(0).setMaxWidth(30);
-        columnModel.getColumn(1).setMinWidth(100);
+        columnModel.getColumn(1).setMinWidth(50);
         columnModel.getColumn(1).setPreferredWidth(100);
         columnModel.getColumn(2).setMinWidth(100);
         columnModel.getColumn(2).setPreferredWidth(100);
+
+        tableAccounting.addMouseListener(new AccountingPanelTableClicked(this, tableAccounting));
+        tableAccounting.addKeyListener(new AccountingPanelTableDelete(this, tableAccounting));
+
+        JButton buttonAdd = new JButton("Add Item");
+        buttonAdd.addMouseListener(new AccountingPanelAddItemClicked(this));
 
         JScrollPane scrollPane = new JScrollPane(tableAccounting){
             @Override
@@ -79,59 +83,6 @@ public class AccountingPanel extends JPanel{
             }
         };
 
-        JButton buttonAdd = new JButton("Add Item");
-        buttonAdd.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                AddEditItemDialog dialog = new AddEditItemDialog(model.getItemTypes(), model.getRecentlyUsedItems());
-                dialog.setLocationRelativeTo((Component) model);
-                dialog.setVisible(true);
-
-                if (dialog.getResult()) {
-                    Item item = dialog.getCreatedItem();
-                    model.addItem(item);
-                }
-            }
-        });
-
-        tableAccounting.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    AddEditItemDialog dialog = new AddEditItemDialog(model.getItemTypes(), new ArrayList<>());
-                    Item itemToEdit = (Item) tableAccounting.getModel().getValueAt(tableAccounting.getSelectedRow(), 4);
-                    dialog.setItem(itemToEdit);
-                    dialog.setLocationRelativeTo((Component) model);
-                    dialog.setVisible(true);
-
-                    if (dialog.getResult()) {
-                        Item createdItem = dialog.getCreatedItem();
-                        itemToEdit.setIncome(createdItem.getIncome());
-                        itemToEdit.setAmount(createdItem.getAmount());
-                        itemToEdit.setType(createdItem.getType());
-                        itemToEdit.setDescription(createdItem.getDescription());
-                        model.updateItem(itemToEdit);
-                        tableAccounting.repaint();
-                    }
-                }
-            }
-        });
-
-        tableAccounting.registerKeyboardAction(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                int selectedRow = tableAccounting.getSelectedRow();
-                if (selectedRow == -1) {
-                    return;
-                }
-                int result = JOptionPane.showConfirmDialog(AccountingPanel.this,
-                        "Are you sure?", "Deleting Item", JOptionPane.YES_NO_CANCEL_OPTION);
-                if (result == 0) {
-                    model.deleteItem((Item) tableAccounting.getModel().getValueAt(selectedRow, 4));
-                }
-            }
-        }, KeyStroke.getKeyStroke("DELETE"), JComponent.WHEN_FOCUSED);
-
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup()
@@ -142,22 +93,17 @@ public class AccountingPanel extends JPanel{
                 .addGap(5)
                 .addComponent(buttonAdd));
 
+        this.getActionMap().put(Configuration.INIT_CONFIG, new InitConfigurableAction(this));
+        this.getActionMap().put(Configuration.DAY_CHANGED, new AccountingPanelDayChanged(this,tableAccounting));
+    }
 
-        this.getActionMap().put(GuiModel.DAY_CHANGED, new ConfigurationAction() {
-            @Override
-            protected void actionPerformed(GuiModel guiModel) {
-                if (model == null) {
-                    model = guiModel;
-                }
+    @Override
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+    }
 
-                Day day = model.getDay(model.getSelectedDayNumber());
-                ((AccountingPanelTableModel) tableAccounting.getModel()).setData(day.getItems());
-                tableAccounting.clearSelection();
-                tableAccounting.revalidate();
-                tableAccounting.repaint();
-                AccountingPanel.this.revalidate();
-                AccountingPanel.this.repaint();
-            }
-        });
+    @Override
+    public Configuration getConfiguration() {
+        return configuration;
     }
 }

@@ -1,25 +1,21 @@
-package org.kaleta.scheduler.frontend.action;
+package org.kaleta.scheduler.frontend.action.configuration;
 
 import org.kaleta.scheduler.frontend.Configurable;
-import org.kaleta.scheduler.frontend.ConfigurationAction;
-import org.kaleta.scheduler.frontend.common.SwingWorkerHandler;
-import org.kaleta.scheduler.service.MonthService;
 import org.kaleta.scheduler.service.Service;
 
 import javax.swing.*;
 import java.util.Map;
 
 /**
- * TODO documentation about actionPerformed
  * Created by Stanislav Kaleta on 30.10.2015.
  */
-public class GlobalPanelMonthChangedAction extends ConfigurationAction {
+public class GlobalPanelMonthChanged extends ConfigurationAction {
     private JComponent componentBack;
     private JLabel labelMonthName;
     private JComponent componentNext;
 
-    public GlobalPanelMonthChangedAction(Configurable configurable, JComponent componentBack,
-                                         JLabel labelMonthName, JComponent componentNext){
+    public GlobalPanelMonthChanged(Configurable configurable, JComponent componentBack,
+                                   JLabel labelMonthName, JComponent componentNext){
         super(configurable);
         this.componentBack = componentBack;
         this.labelMonthName = labelMonthName;
@@ -28,10 +24,9 @@ public class GlobalPanelMonthChangedAction extends ConfigurationAction {
 
     @Override
     protected void actionPerformed() {
-        Service service = new Service();
-        Map<Integer, Integer> orders = service.getMonthService().getMonthsOrder();
+        Map<Integer, Integer> orders = Service.monthService().getMonthsOrder();
 
-        int monthId = getConfigurable().getConfiguration().getSelectedMonthId();
+        int monthId = getConfiguration().getSelectedMonthId();
 
         Integer order = orders.get(monthId);
 
@@ -46,6 +41,6 @@ public class GlobalPanelMonthChangedAction extends ConfigurationAction {
             }
         }
 
-        labelMonthName.setText(service.getMonthService().getMonthName(monthId));
+        labelMonthName.setText(Service.monthService().getMonthName(monthId));
     }
 }

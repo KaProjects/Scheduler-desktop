@@ -1,9 +1,9 @@
 package org.kaleta.scheduler.backend.manager.ex;
 
-import org.kaleta.scheduler.ex.common.ServiceFailureException;
 import org.kaleta.scheduler.backend.entity.Item;
 import org.kaleta.scheduler.backend.entity.Month;
 import org.kaleta.scheduler.backend.entity.Task;
+import org.kaleta.scheduler.ex.common.ServiceFailureException;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 

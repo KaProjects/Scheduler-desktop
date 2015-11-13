@@ -14,11 +14,16 @@ import java.awt.Point;
 /**
  * Created by Stanislav Kaleta on 30.10.2015.
  */
-class DayService {
+public class DayService {
+
+    DayService(){
+        // package private class
+    }
 
     /**
      * TODO documentation
      * @param position
+     * @param monthId
      * @return
      */
     public Day getDayAt(Point position, Integer monthId) {
@@ -44,6 +49,7 @@ class DayService {
     /**
      * TODO documentation
      * @param dayNumber
+     * @param monthId
      * @return
      */
     public Day getDay(int dayNumber, Integer monthId) {

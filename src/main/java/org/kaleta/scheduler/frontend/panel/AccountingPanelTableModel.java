@@ -3,7 +3,7 @@ package org.kaleta.scheduler.frontend.panel;
 import org.kaleta.scheduler.backend.entity.Item;
 
 import javax.swing.table.AbstractTableModel;
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 

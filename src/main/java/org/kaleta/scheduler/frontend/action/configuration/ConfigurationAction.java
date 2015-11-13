@@ -1,9 +1,8 @@
-package org.kaleta.scheduler.frontend;
+package org.kaleta.scheduler.frontend.action.configuration;
 
 import org.kaleta.scheduler.frontend.Configurable;
 import org.kaleta.scheduler.frontend.Configuration;
 import org.kaleta.scheduler.frontend.common.SwingWorkerHandler;
-import org.kaleta.scheduler.service.ServiceFailureException;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -30,7 +29,7 @@ public abstract class ConfigurationAction extends AbstractAction {
 
     protected abstract void actionPerformed();
 
-    protected Configurable getConfigurable() {
-        return configurable;
+    protected Configuration getConfiguration() {
+        return configurable.getConfiguration();
     }
 }

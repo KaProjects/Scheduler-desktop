@@ -3,7 +3,8 @@ package org.kaleta.scheduler.frontend.dialog;
 import org.kaleta.scheduler.backend.entity.Month;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.util.Set;
 
 /**

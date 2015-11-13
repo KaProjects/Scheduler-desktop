@@ -1,9 +1,10 @@
 package org.kaleta.scheduler.frontend.wizard;
 
-import com.sun.corba.se.spi.orbutil.threadpool.ThreadPoolManager;
-
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
 
 /**
  * Author: Stanislav Kaleta

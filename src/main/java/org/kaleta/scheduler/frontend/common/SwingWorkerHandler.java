@@ -1,7 +1,6 @@
 package org.kaleta.scheduler.frontend.common;
 
 import org.kaleta.scheduler.frontend.Initializer;
-import org.kaleta.scheduler.service.ServiceFailureException;
 
 import javax.swing.*;
 

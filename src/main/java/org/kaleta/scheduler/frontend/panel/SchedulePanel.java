@@ -1,11 +1,10 @@
 package org.kaleta.scheduler.frontend.panel;
 
 import org.kaleta.scheduler.backend.entity.Time;
-import org.kaleta.scheduler.frontend.ConfigurationAction;
-import org.kaleta.scheduler.frontend.GuiModel;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -17,8 +16,6 @@ import java.util.List;
  * Created by Stanislav Kaleta on 06.08.2015.
  */
 public class SchedulePanel extends JPanel {
-    private GuiModel model;
-
     private List<JPanel> hours;
 
     public SchedulePanel(){

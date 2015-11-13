@@ -1,6 +1,6 @@
 package org.kaleta.scheduler.backend.entity;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 

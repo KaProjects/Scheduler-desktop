@@ -34,4 +34,4 @@ Released: summer 2015
     Partially finished (just accounting - now focus on testing and using - rest in 2.0).
     
 # 2.0
-in progress...
+    Improved services, configuration, migrated actions to classes. 

@@ -1,7 +1,7 @@
 package org.kaleta.scheduler.ex;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * Created with IntelliJ IDEA.
