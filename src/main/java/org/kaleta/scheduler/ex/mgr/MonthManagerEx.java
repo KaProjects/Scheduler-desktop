@@ -1,4 +1,4 @@
-package org.kaleta.scheduler.backend.manager.ex;
+package org.kaleta.scheduler.ex.mgr;
 
 import org.kaleta.scheduler.backend.entity.Month;
 import org.kaleta.scheduler.ex.common.ServiceFailureException;

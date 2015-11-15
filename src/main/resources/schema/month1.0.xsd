@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="month" type="monthType"/>
+
+    <xs:complexType name="monthType">
+        <xs:sequence>
+            <xs:element name="specification"  type="specificationType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="tasks" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="accounting"  type="accountingType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="specificationType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="dayscount" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="startingday" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="accountingType">
+        <xs:sequence>
+            <xs:element name="item"  type="itemType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="itemType">
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="type" type="xs:string" use="required"/>
+        <xs:attribute name="day" type="xs:string" use="required"/>
+        <xs:attribute name="income" type="xs:string" use="required"/>
+        <xs:attribute name="amount" type="xs:string" use="required"/>
+    </xs:complexType>
+</xs:schema>

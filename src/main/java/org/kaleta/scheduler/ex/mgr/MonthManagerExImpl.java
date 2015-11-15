@@ -1,4 +1,4 @@
-package org.kaleta.scheduler.backend.manager.ex;
+package org.kaleta.scheduler.ex.mgr;
 
 import org.kaleta.scheduler.backend.entity.Item;
 import org.kaleta.scheduler.backend.entity.Month;

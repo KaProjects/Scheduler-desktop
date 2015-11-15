@@ -15,7 +15,7 @@ public abstract class SwingWorkerHandler {
             protected Void doInBackground() {
                 try {
                     runInBackground();
-                } catch (Exception e){
+                } catch (Exception/*ServiceFailureException*/ e){
                     // TODO handle runtime gui exceptions
                     Initializer.LOG.severe("TODO: SWING WORKER EXCEPTION");
                     //throw new ServiceFailureException(e);

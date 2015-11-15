@@ -2,8 +2,8 @@ package org.kaleta.scheduler.ex;
 
 import org.kaleta.scheduler.backend.entity.Item;
 import org.kaleta.scheduler.backend.entity.Month;
-import org.kaleta.scheduler.backend.manager.ex.MonthManagerEx;
-import org.kaleta.scheduler.backend.manager.ex.MonthManagerExImpl;
+import org.kaleta.scheduler.ex.mgr.MonthManagerEx;
+import org.kaleta.scheduler.ex.mgr.MonthManagerExImpl;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

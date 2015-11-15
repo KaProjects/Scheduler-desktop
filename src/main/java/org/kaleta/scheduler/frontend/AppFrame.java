@@ -1,6 +1,8 @@
 package org.kaleta.scheduler.frontend;
 
 import org.kaleta.scheduler.backend.entity.Settings;
+import org.kaleta.scheduler.feature.importing.mobile.ImportCollectedDataAction;
+import org.kaleta.scheduler.feature.importing.version1.ImportOldDataAction;
 import org.kaleta.scheduler.frontend.action.menu.*;
 import org.kaleta.scheduler.frontend.common.MenuItemWrapper;
 import org.kaleta.scheduler.frontend.panel.AccountingPanel;
@@ -93,6 +95,12 @@ public class AppFrame extends JFrame implements Configuration {
         JMenu fileMenu = new JMenu("File");
         fileMenu.setMnemonic(KeyEvent.VK_F);
         menuBar.add(fileMenu);
+        JMenu importMenu = new JMenu("Import");
+        importMenu.add(new MenuItemWrapper(new ImportOldDataAction(this),
+                KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK)));
+        importMenu.add(new MenuItemWrapper(new ImportCollectedDataAction(this),"Not implemented yet!"));
+        fileMenu.add(importMenu);
+        fileMenu.add(new JSeparator());
         fileMenu.add(new MenuItemWrapper(new OpenSettingsDialog(this),
                 KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK)));
         fileMenu.add(new JSeparator());

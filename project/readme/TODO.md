@@ -1,11 +1,9 @@
 ## Versions
 ### 2.0
 + (prerobit android appku(an.19) a tu pridat moznost importovania z nej
-+ solve importing data from version 1.y
 + dorobit front-end
     - design & impl. day preview + monthPanel(name of days in week)
-    - check all user inputs (in dialogs) + react to them (maybe beans or something)
-+ check ServiceFailureEx. in AppFrame + react to it (event-thread)
++ check ServiceFailureEx. in AppFrame + react to them in swing worker
 + solve TODOs
 + nejake ikonky pre menu
 + release:
@@ -23,10 +21,12 @@
     - design & impl. add/edit/del task in day panel
     - vyriesit pridavanie opakujucich sa taskov (napr. menu-Task-Add Repeating Task-zaskrtnut dni(zo selectnuteho mesiaca) kedy)
     - design & impl. global panel (including month control)
++ check all user inputs (in dialogs) + react to them (maybe beans or something)
 + migrate strings(commands, messages, ...), colors, ... to commons/Colors Strings.Message Strings.Command etc. <- better management
 + impl. user statistics + improve logging (more info)
+
 ## Ideas
-- dorobit dalsie veci ako edit month, html documentation,...
+- dorobit dalsie veci ako edit months, html documentation,...
 - moznost exportovat tasky do img/pdf na vytlacenie
 - lokalizovat commands, messages
 - automatizovane testy
@@ -34,7 +34,7 @@
 
 
 ## Bugs
-+ (NEW) l&f problems:: 
++ (NEW) l&f problems:
     - settings-types-DescriptionPanel repaint bug (while moving scrollbar)  
     -  alignments 
     -  "AWT-EventQueue-0" java.lang.NullPointerException after schema change

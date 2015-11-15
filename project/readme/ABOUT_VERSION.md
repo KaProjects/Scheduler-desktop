@@ -34,4 +34,7 @@ Released: summer 2015
     Partially finished (just accounting - now focus on testing and using - rest in 2.0).
     
 # 2.0
+Released: in progress
+
     Improved services, configuration, migrated actions to classes. 
+    Added possibility to import months from version 1.x. 
