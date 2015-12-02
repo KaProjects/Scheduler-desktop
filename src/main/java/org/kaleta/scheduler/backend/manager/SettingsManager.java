@@ -13,25 +13,25 @@ public interface SettingsManager {
      *
      * @throws ManagerException
      */
-    public void createSettings() throws ManagerException;
+    void createSettings() throws ManagerException;
 
     /**
      *
      * @return
      * @throws ManagerException
      */
-    public Settings retrieveSettings() throws ManagerException;
+    Settings retrieveSettings() throws ManagerException;
 
     /**
      *
      * @param settings
      * @throws ManagerException
      */
-    public void updateSettings(Settings settings) throws ManagerException;
+    void updateSettings(Settings settings) throws ManagerException;
 
     /**
      *
      * @throws ManagerException
      */
-    public void deleteSettings() throws ManagerException;
+    void deleteSettings() throws ManagerException;
 }

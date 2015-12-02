@@ -17,6 +17,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  * Created by Stanislav Kaleta on 06.08.2015.
@@ -46,16 +49,15 @@ public class AppFrame extends JFrame implements Configuration {
         JTabbedPane dayTabbedPane = new JTabbedPane();
         dayTabbedPane.addTab("Schedule", new SchedulePanel());
         dayTabbedPane.addTab("Accounting", new AccountingPanel());
+        /*select Acc. tab, cuz Sch. is not even implemented.*/dayTabbedPane.setSelectedIndex(1);
 
         GlobalPanel globalPanel = new GlobalPanel();
-        globalPanel.setBackground(Color.YELLOW);
 
         JPanel monthPanel = new JPanel();
-        monthPanel.setBackground(Color.BLUE);
         monthPanel.setLayout(new GridBagLayout());
 
-        for(int y=1;y<=6;y++){
-            for(int x =1;x<=7;x++){
+        for(int y=0;y<=6;y++) {
+            for (int x = 1; x <= 7; x++) {
                 GridBagConstraints c = new GridBagConstraints();
                 c.gridx = x;
                 c.gridy = y;
@@ -65,8 +67,22 @@ public class AppFrame extends JFrame implements Configuration {
                 c.weighty = 1;
                 c.fill = GridBagConstraints.BOTH;
 
-                DayPreviewPanel dayPreviewPanel = new DayPreviewPanel(new Point(x,y));
-                monthPanel.add(dayPreviewPanel, c);
+                if (y > 0) {
+                    DayPreviewPanel dayPreviewPanel = new DayPreviewPanel(new Point(x, y));
+                    monthPanel.add(dayPreviewPanel, c);
+                } else {
+                    DateFormatSymbols symbols = new SimpleDateFormat("yyyyMMdd", Locale.ENGLISH).getDateFormatSymbols();
+                    String[] dayNames = symbols.getWeekdays();
+                    JLabel label = new JLabel(dayNames[(x) % 7 + 1]);
+                    label.setFont(new Font(label.getFont().getName(), Font.BOLD + Font.ITALIC, label.getFont().getSize() + 2));
+                    JPanel panel = new JPanel();
+                    panel.setBorder(BorderFactory.createLineBorder(Color.RED));
+                    panel.setBackground(Color.WHITE);
+                    panel.add(label);
+                    c.weightx = 0;
+                    c.weighty = 0;
+                    monthPanel.add(panel, c);
+                }
             }
         }
 
@@ -81,7 +97,7 @@ public class AppFrame extends JFrame implements Configuration {
 
         layout.setVerticalGroup(layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                        .addComponent(globalPanel, 100, 100, 100)
+                        .addComponent(globalPanel, 50, 50, 50)
                         .addComponent(monthPanel))
                 .addComponent(dayTabbedPane));
 
@@ -98,7 +114,9 @@ public class AppFrame extends JFrame implements Configuration {
         JMenu importMenu = new JMenu("Import");
         importMenu.add(new MenuItemWrapper(new ImportOldDataAction(this),
                 KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK)));
-        importMenu.add(new MenuItemWrapper(new ImportCollectedDataAction(this),"Not implemented yet!"));
+        importMenu.add(new MenuItemWrapper(new ImportCollectedDataAction(this),
+                KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK),
+                "Not implemented yet!"));
         fileMenu.add(importMenu);
         fileMenu.add(new JSeparator());
         fileMenu.add(new MenuItemWrapper(new OpenSettingsDialog(this),

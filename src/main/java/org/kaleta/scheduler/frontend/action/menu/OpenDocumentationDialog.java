@@ -15,8 +15,5 @@ public class OpenDocumentationDialog extends MenuAction{
     @Override
     protected void actionPerformed() {
         throw new NotImplementedException();
-        //TODO implement
-        /*TODO somehow open html file with doc.(devel doc + user guide)*/
-        /*TODO to version 2.y*/
     }
 }

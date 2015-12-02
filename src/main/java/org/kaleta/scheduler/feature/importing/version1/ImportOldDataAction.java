@@ -18,7 +18,7 @@ public class ImportOldDataAction extends MenuAction{
 
     @Override
     protected void actionPerformed() {
-        ImportDialog dialog = new ImportDialog();
+        ImportOldDataDialog dialog = new ImportOldDataDialog();
         dialog.setLocationRelativeTo((Component) getConfiguration());
         dialog.setVisible(true);
         if (dialog.getResult()){

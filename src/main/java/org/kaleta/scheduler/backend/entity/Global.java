@@ -34,9 +34,8 @@ public class Global {
         Global global = (Global) o;
 
         if (months != null ? !months.equals(global.months) : global.months != null) return false;
-        if (tasks != null ? !tasks.equals(global.tasks) : global.tasks != null) return false;
+        return !(tasks != null ? !tasks.equals(global.tasks) : global.tasks != null);
 
-        return true;
     }
 
     @Override

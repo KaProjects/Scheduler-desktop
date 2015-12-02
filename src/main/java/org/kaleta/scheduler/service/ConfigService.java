@@ -187,6 +187,9 @@ public class ConfigService {
      */
     public void monthChanged(Integer currentlySelectedMonthId){
         try {
+            // need to check if month exists, no just set it
+            // (otherwise causing many problems in gui)
+            new JaxbMonthManager().retrieveMonth(currentlySelectedMonthId);
             SettingsManager manager = new JaxbSettingsManager();
             Settings settings = manager.retrieveSettings();
             settings.setLastMonthSelectedId(currentlySelectedMonthId);

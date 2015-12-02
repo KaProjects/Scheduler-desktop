@@ -17,8 +17,5 @@ public class OpenEditMonthDialog extends MenuAction {
     @Override
     protected void actionPerformed() {
         throw new NotImplementedException();
-        //TODO implement
-        //TODO open edit dialog (+throw month changed action - cuz month control update)
-        //TODO edit month params + edit order
     }
 }

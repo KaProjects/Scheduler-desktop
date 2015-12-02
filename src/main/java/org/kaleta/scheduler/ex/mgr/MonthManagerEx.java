@@ -12,9 +12,9 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface MonthManagerEx {
-    public void createMonth(Month month) throws ServiceFailureException;
-    public Month retrieveMonth(String name) throws ServiceFailureException;
-    public List<Month> retrieveAllMonths() throws ServiceFailureException;
-    public void updateMonth(Month month) throws ServiceFailureException;
-    public void deleteMonth(Month month) throws ServiceFailureException;
+    void createMonth(Month month) throws ServiceFailureException;
+    Month retrieveMonth(String name) throws ServiceFailureException;
+    List<Month> retrieveAllMonths() throws ServiceFailureException;
+    void updateMonth(Month month) throws ServiceFailureException;
+    void deleteMonth(Month month) throws ServiceFailureException;
 }

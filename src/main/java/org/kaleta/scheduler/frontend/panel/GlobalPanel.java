@@ -11,8 +11,6 @@ import javax.swing.*;
 import java.awt.Font;
 
 /**
- * TODO month handling maybe to dif. panel
- *
  * Created by Stanislav Kaleta on 06.08.2015.
  */
 public class GlobalPanel extends JPanel implements Configurable{
@@ -20,6 +18,7 @@ public class GlobalPanel extends JPanel implements Configurable{
 
     public GlobalPanel(){
         initComponents();
+        // enable this before start of reworking: this.setBackground(Color.YELLOW);
     }
 
     private void initComponents() {

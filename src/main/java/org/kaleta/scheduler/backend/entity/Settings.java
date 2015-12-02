@@ -124,9 +124,8 @@ public class Settings {
         if (taskTypes != null ? !taskTypes.equals(settings.taskTypes) : settings.taskTypes != null) return false;
         if (uiSchemeSelected != null ? !uiSchemeSelected.equals(settings.uiSchemeSelected) : settings.uiSchemeSelected != null)
             return false;
-        if (userName != null ? !userName.equals(settings.userName) : settings.userName != null) return false;
+        return !(userName != null ? !userName.equals(settings.userName) : settings.userName != null);
 
-        return true;
     }
 
     @Override

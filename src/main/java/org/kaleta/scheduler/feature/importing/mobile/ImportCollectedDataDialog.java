@@ -5,5 +5,5 @@ import javax.swing.*;
 /**
  * Created by Stanislav Kaleta on 13.11.2015.
  */
-public class ImportDialog extends JDialog{
+public class ImportCollectedDataDialog extends JDialog{
 }

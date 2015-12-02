@@ -26,16 +26,16 @@ public class DayPreviewPanel extends JPanel implements Configurable {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBackground(Color.BLACK);
 
+
         // TODO update
-        this.add(new JLabel("week " + position.y + " day " + position.x));
-        // TODO update
-        JLabel labelDayNumber  = new JLabel("-");
+        JLabel labelDayNumber  = new JLabel("-"); // TODO -> to bigger icon/number
         this.add(labelDayNumber);
         // TODO update
-        JLabel labelTaskItems = new JLabel("-");
+        JLabel labelTaskItems = new JLabel("-"); // TODO -> to some bar with expense/income sum
         this.add(labelTaskItems);
 
         this.getActionMap().put(Configuration.INIT_CONFIG, new InitConfigurableAction(this));
+        // TODO update monthChanged action, + not sure if adding item update this too - check
         this.getActionMap().put(Configuration.MONTH_CHANGED, new DayPreviewPanelMonthChanged(this, position, labelDayNumber, labelTaskItems));
         this.getActionMap().put(Configuration.DAY_CHANGED, new DayPreviewPanelDayChanged(this, position));
         this.addMouseListener(new DayPreviewPanelClicked(this, position));

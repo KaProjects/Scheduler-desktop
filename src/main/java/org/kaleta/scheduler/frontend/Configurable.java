@@ -9,11 +9,11 @@ public interface Configurable {
      * TODO documentation
      * @param configuration
      */
-    public void setConfiguration(Configuration configuration);
+    void setConfiguration(Configuration configuration);
 
     /**
      * TODO documentation
      * @return
      */
-    public Configuration getConfiguration();
+    Configuration getConfiguration();
 }

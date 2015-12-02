@@ -83,9 +83,8 @@ public class Item {
         if (description != null ? !description.equals(item.description) : item.description != null) return false;
         if (id != null ? !id.equals(item.id) : item.id != null) return false;
         if (income != null ? !income.equals(item.income) : item.income != null) return false;
-        if (type != null ? !type.equals(item.type) : item.type != null) return false;
+        return !(type != null ? !type.equals(item.type) : item.type != null);
 
-        return true;
     }
 
     @Override

@@ -50,9 +50,8 @@ public class Time {
         Time time = (Time) o;
 
         if (hour != null ? !hour.equals(time.hour) : time.hour != null) return false;
-        if (minutes != null ? !minutes.equals(time.minutes) : time.minutes != null) return false;
+        return !(minutes != null ? !minutes.equals(time.minutes) : time.minutes != null);
 
-        return true;
     }
 
     @Override

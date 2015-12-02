@@ -13,12 +13,12 @@ public interface WizardPanel {
      *
      * @return
      */
-    public boolean isFilled();
+    boolean isFilled();
 
     /**
      * TODO documentation
      *
      * @param flag
      */
-    public void setVisible(boolean flag);
+    void setVisible(boolean flag);
 }

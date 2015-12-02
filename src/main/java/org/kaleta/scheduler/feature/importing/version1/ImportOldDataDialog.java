@@ -32,13 +32,13 @@ import java.util.Locale;
 /**
  * Created by Stanislav Kaleta on 13.11.2015.
  */
-public class ImportDialog extends JDialog {
+public class ImportOldDataDialog extends JDialog {
     private boolean result;
     private Document document;
 
     private JFileChooser fileChooser;
 
-    public ImportDialog(){
+    public ImportOldDataDialog(){
         result = false;
         document = null;
         fileChooser = new JFileChooser();
@@ -113,11 +113,10 @@ public class ImportDialog extends JDialog {
                 labelFileName.setText("<NO FILE SELECTED>");
                 labelInfo.setText("");
                 textAreaData.setText("");
-                ImportDialog.this.pack();
-                int result = fileChooser.showOpenDialog(ImportDialog.this);
+                ImportOldDataDialog.this.pack();
+                int result = fileChooser.showOpenDialog(ImportOldDataDialog.this);
                 if (result == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = fileChooser.getSelectedFile();
-                //if (selectedFile.getName().contains(".xml")) {
                     document = tryParseFile(selectedFile);
 
                     labelFileName.setText(selectedFile.getName());
@@ -130,9 +129,8 @@ public class ImportDialog extends JDialog {
                         labelInfo.setForeground(Color.GREEN);
                         buttonLoadData.setEnabled(true);
                     }
-                    ImportDialog.this.pack();
+                    ImportOldDataDialog.this.pack();
                 }
-               // }
             }
         });
         buttonLoadData.addActionListener(new ActionListener() {
@@ -160,7 +158,7 @@ public class ImportDialog extends JDialog {
                 }
 
                 scrollPaneData.setVisible(true);
-                ImportDialog.this.pack();
+                ImportOldDataDialog.this.pack();
                 buttonLoadData.setEnabled(false);
                 buttonImport.setEnabled(true);
             }
@@ -169,14 +167,14 @@ public class ImportDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 result = true;
-                ImportDialog.this.dispose();
+                ImportOldDataDialog.this.dispose();
             }
         });
         buttonCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 result = false;
-                ImportDialog.this.dispose();
+                ImportOldDataDialog.this.dispose();
             }
         });
     }

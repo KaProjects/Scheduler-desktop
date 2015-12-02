@@ -103,9 +103,8 @@ public class Task {
         if (priority != null ? !priority.equals(task.priority) : task.priority != null) return false;
         if (starts != null ? !starts.equals(task.starts) : task.starts != null) return false;
         if (successful != null ? !successful.equals(task.successful) : task.successful != null) return false;
-        if (type != null ? !type.equals(task.type) : task.type != null) return false;
+        return !(type != null ? !type.equals(task.type) : task.type != null);
 
-        return true;
     }
 
     @Override

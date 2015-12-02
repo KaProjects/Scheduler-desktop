@@ -13,25 +13,25 @@ public interface GlobalManager {
      *
      * @throws ManagerException
      */
-    public void createGlobal() throws ManagerException;
+    void createGlobal() throws ManagerException;
 
     /**
      *
      * @return
      * @throws ManagerException
      */
-    public Global retrieveGlobal() throws ManagerException;
+    Global retrieveGlobal() throws ManagerException;
 
     /**
      *
      * @param global
      * @throws ManagerException
      */
-    public void updateGlobal(Global global) throws ManagerException;
+    void updateGlobal(Global global) throws ManagerException;
 
     /**
      *
      * @throws ManagerException
      */
-    public void deleteGlobal() throws ManagerException;
+    void deleteGlobal() throws ManagerException;
 }

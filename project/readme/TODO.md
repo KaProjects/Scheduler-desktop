@@ -1,19 +1,21 @@
 ## Versions
 ### 2.0
 + (prerobit android appku(an.19) a tu pridat moznost importovania z nej
-+ dorobit front-end
-    - design & impl. day preview + monthPanel(name of days in week)
-+ check ServiceFailureEx. in AppFrame + react to them in swing worker
++ finish: design & impl. day preview
 + solve TODOs
 + nejake ikonky pre menu
 + release:
     - Scheduler-2.0.jar -> project/production
-    - git release workflow(branch/tag/merge) + check documentation and code adjustment (unnecessary blank rows, spaces, etc.) 
+    - git release workflow(branch/tag/merge) + inspect code + check documentation and code adjustment (unnecessary blank rows, spaces, etc.)
     - update ABOUT_VERSION
 
 ### 2.1 
 + analytics
     - impl. & desing graphs etc.
++ edit months (order, edit name, delete)
++ improve DayPreviewPanelUI
++ documentation/user guide
++ solve l&f bug
 
 ### 2.x
 + impl. & design Tasks
@@ -26,7 +28,6 @@
 + impl. user statistics + improve logging (more info)
 
 ## Ideas
-- dorobit dalsie veci ako edit months, html documentation,...
 - moznost exportovat tasky do img/pdf na vytlacenie
 - lokalizovat commands, messages
 - automatizovane testy

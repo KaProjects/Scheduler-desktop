@@ -1,6 +1,6 @@
 package org.kaleta.scheduler.frontend.common;
 
-import org.kaleta.scheduler.frontend.Initializer;
+import org.kaleta.scheduler.service.ServiceFailureException;
 
 import javax.swing.*;
 
@@ -15,10 +15,10 @@ public abstract class SwingWorkerHandler {
             protected Void doInBackground() {
                 try {
                     runInBackground();
-                } catch (Exception/*ServiceFailureException*/ e){
-                    // TODO handle runtime gui exceptions
-                    Initializer.LOG.severe("TODO: SWING WORKER EXCEPTION");
-                    //throw new ServiceFailureException(e);
+                } catch (ServiceFailureException e){
+                    // No need to log here. Cause is (should be) always logged before SFEx is threw.
+                    JDialog errorDialog = new ErrorDialog(e);
+                    errorDialog.setVisible(true);
                 }
                 return null;
             }

@@ -13,7 +13,7 @@ public interface MonthManager {
      * @param month
      * @throws ManagerException
      */
-    public void createMonth(Month month) throws ManagerException;
+    void createMonth(Month month) throws ManagerException;
 
     /**
      *
@@ -21,19 +21,19 @@ public interface MonthManager {
      * @return
      * @throws ManagerException
      */
-    public Month retrieveMonth(Integer id) throws ManagerException;
+    Month retrieveMonth(Integer id) throws ManagerException;
 
     /**
      *
      * @param month
      * @throws ManagerException
      */
-    public void updateMonth(Month month) throws ManagerException;
+    void updateMonth(Month month) throws ManagerException;
 
     /**
      *
      * @param month
      * @throws ManagerException
      */
-    public void deleteMonth(Month month) throws ManagerException;
+    void deleteMonth(Month month) throws ManagerException;
 }
