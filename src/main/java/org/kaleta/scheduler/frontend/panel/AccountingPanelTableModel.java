@@ -1,6 +1,7 @@
 package org.kaleta.scheduler.frontend.panel;
 
 import org.kaleta.scheduler.backend.entity.Item;
+import org.kaleta.scheduler.frontend.common.ColorConstants;
 
 import javax.swing.table.AbstractTableModel;
 import java.awt.Color;
@@ -52,7 +53,7 @@ public class AccountingPanelTableModel extends AbstractTableModel{
     }
 
     public Color getRowColor(int row){
-        return (rowData.get(row).getIncome()) ? Color.getHSBColor(120/360f,0.5f,1) : Color.getHSBColor(0/360f,0.5f,1);
+        return (rowData.get(row).getIncome()) ? ColorConstants.INCOME_GREEN : ColorConstants.EXPENSE_RED;
     }
 
     public void setData(List<Item> itemList){

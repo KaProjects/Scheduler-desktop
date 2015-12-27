@@ -29,7 +29,7 @@ public class AccountingPanelTableDelete extends KeyboardAction {
         if (result == 0) {
             Item itemToDel = (Item) target.getModel().getValueAt(selectedRow, 4);
             Service.itemService().deleteItem(itemToDel, getConfiguration().getSelectedMonthId());
-            getConfiguration().update(Configuration.DAY_CHANGED);
+            getConfiguration().update(Configuration.ITEM_CHANGED);
         }
     }
 

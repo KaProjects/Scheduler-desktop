@@ -123,7 +123,6 @@ public class ItemService {
             Initializer.LOG.severe(e.getMessage());
             throw new ServiceFailureException(e);
         }
-
     }
 
     /**
@@ -170,6 +169,72 @@ public class ItemService {
             Month month = manager.retrieveMonth(monthId);
             month.getItems().remove(item);
             manager.updateMonth(month);
+        } catch (ManagerException e) {
+            Initializer.LOG.severe(e.getMessage());
+            throw new ServiceFailureException(e);
+        }
+    }
+
+    /**
+     *
+     * @param monthId
+     * @return
+     */
+    public Integer getMaxDailyExpence(Integer monthId){
+        try {
+            MonthManager manager = new JaxbMonthManager();
+            Month month = manager.retrieveMonth(monthId);
+
+            Map<Integer, Integer> dailyIncomes = new HashMap<>();
+            for (Item item : month.getItems()){
+                if (!item.getIncome()){
+                    if (dailyIncomes.keySet().contains(item.getDay())){
+                        dailyIncomes.put(item.getDay(), dailyIncomes.get(item.getDay()) + item.getAmount().intValue());
+                    } else {
+                        dailyIncomes.put(item.getDay(), item.getAmount().intValue());
+                    }
+                }
+            }
+            Integer max = 0;
+            for (Integer key : dailyIncomes.keySet()){
+                if (dailyIncomes.get(key) > max){
+                    max = dailyIncomes.get(key);
+                }
+            }
+            return max;
+        } catch (ManagerException e) {
+            Initializer.LOG.severe(e.getMessage());
+            throw new ServiceFailureException(e);
+        }
+    }
+
+    /**
+     *
+     * @param monthId
+     * @return
+     */
+    public Integer getMaxDailyIncome(Integer monthId){
+        try {
+            MonthManager manager = new JaxbMonthManager();
+            Month month = manager.retrieveMonth(monthId);
+
+            Map<Integer, Integer> dailyIncomes = new HashMap<>();
+            for (Item item : month.getItems()){
+                if (item.getIncome()){
+                    if (dailyIncomes.keySet().contains(item.getDay())){
+                        dailyIncomes.put(item.getDay(), dailyIncomes.get(item.getDay()) + item.getAmount().intValue());
+                    } else {
+                        dailyIncomes.put(item.getDay(), item.getAmount().intValue());
+                    }
+                }
+            }
+            Integer max = 0;
+            for (Integer key : dailyIncomes.keySet()){
+                if (dailyIncomes.get(key) > max){
+                    max = dailyIncomes.get(key);
+                }
+            }
+            return max;
         } catch (ManagerException e) {
             Initializer.LOG.severe(e.getMessage());
             throw new ServiceFailureException(e);

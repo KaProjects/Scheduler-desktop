@@ -4,6 +4,7 @@ import org.kaleta.scheduler.frontend.Configurable;
 import org.kaleta.scheduler.frontend.Configuration;
 import org.kaleta.scheduler.frontend.action.InitConfigurableAction;
 import org.kaleta.scheduler.frontend.action.configuration.AccountingPanelDayChanged;
+import org.kaleta.scheduler.frontend.action.configuration.AccountingPanelItemChanged;
 import org.kaleta.scheduler.frontend.action.keyboard.AccountingPanelTableDelete;
 import org.kaleta.scheduler.frontend.action.mouse.AccountingPanelAddItemClicked;
 import org.kaleta.scheduler.frontend.action.mouse.AccountingPanelTableClicked;
@@ -20,7 +21,6 @@ import java.awt.Dimension;
  */
 public class AccountingPanel extends JPanel implements Configurable {
     private Configuration configuration;
-
 
     public AccountingPanel(){
         initComponents();
@@ -95,6 +95,7 @@ public class AccountingPanel extends JPanel implements Configurable {
 
         this.getActionMap().put(Configuration.INIT_CONFIG, new InitConfigurableAction(this));
         this.getActionMap().put(Configuration.DAY_CHANGED, new AccountingPanelDayChanged(this,tableAccounting));
+        this.getActionMap().put(Configuration.ITEM_CHANGED, new AccountingPanelItemChanged(this,tableAccounting));
     }
 
     @Override

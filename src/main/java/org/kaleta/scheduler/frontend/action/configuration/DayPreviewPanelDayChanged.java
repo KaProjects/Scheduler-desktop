@@ -26,12 +26,11 @@ public class DayPreviewPanelDayChanged extends ConfigurationAction {
         Day day = Service.dayService().getDayAt(position,getConfiguration().getSelectedMonthId());
         int dayNumber = day.getDayNumber();
         if (getConfiguration().getSelectedDayNumber() == dayNumber) {
-            target.setBackground(Color.ORANGE);//TODO this to UI
+            target.setBackground(Color.ORANGE);
         } else {
             if (target.isEnabled()){
-                target.setBackground(Color.LIGHT_GRAY);//TODO this to UI
+                target.setBackground(Color.LIGHT_GRAY);
             }
-
         }
     }
 }

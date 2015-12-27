@@ -10,6 +10,7 @@ public interface Configuration {
     int INIT_CONFIG = 0;
     int MONTH_CHANGED = 1;
     int DAY_CHANGED = 2;
+    int ITEM_CHANGED = 3;
 
     /**
      * TODO documentation

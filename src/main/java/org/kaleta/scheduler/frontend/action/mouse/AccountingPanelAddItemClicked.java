@@ -30,7 +30,7 @@ public class AccountingPanelAddItemClicked extends MouseAction{
             Item item = dialog.getCreatedItem();
             Configuration config = getConfiguration();
             Service.itemService().addItem(item, config.getSelectedMonthId(), config.getSelectedDayNumber());
-            config.update(Configuration.DAY_CHANGED);
+            getConfiguration().update(Configuration.ITEM_CHANGED);
         }
     }
 }

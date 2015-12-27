@@ -2,6 +2,7 @@ package org.kaleta.scheduler.frontend.action.mouse;
 
 import org.kaleta.scheduler.backend.entity.Item;
 import org.kaleta.scheduler.frontend.Configurable;
+import org.kaleta.scheduler.frontend.Configuration;
 import org.kaleta.scheduler.frontend.dialog.AddEditItemDialog;
 import org.kaleta.scheduler.service.Service;
 
@@ -37,7 +38,7 @@ public class AccountingPanelTableClicked extends MouseAction{
                 itemToEdit.setType(createdItem.getType());
                 itemToEdit.setDescription(createdItem.getDescription());
                 Service.itemService().updateItem(itemToEdit, getConfiguration().getSelectedMonthId());
-                target.repaint();
+                getConfiguration().update(Configuration.ITEM_CHANGED);
             }
         }
     }

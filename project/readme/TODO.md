@@ -1,7 +1,6 @@
 ## Versions
 ### 2.0
 + (prerobit android appku(an.19) a tu pridat moznost importovania z nej
-+ finish: design & impl. day preview
 + solve TODOs
 + nejake ikonky pre menu
 + release:
@@ -13,19 +12,22 @@
 + analytics
     - impl. & desing graphs etc.
 + edit months (order, edit name, delete)
-+ improve DayPreviewPanelUI
-+ documentation/user guide
 + solve l&f bug
 
 ### 2.x
 + impl. & design Tasks
+    + (maybe migrate to andr)
+        - desktop widget 
+        - or just retrieve data from gcalendar/gtasks for stats
     - design & impl. day schedule panel
     - design & impl. add/edit/del task in day panel
     - vyriesit pridavanie opakujucich sa taskov (napr. menu-Task-Add Repeating Task-zaskrtnut dni(zo selectnuteho mesiaca) kedy)
     - design & impl. global panel (including month control)
+    
 + check all user inputs (in dialogs) + react to them (maybe beans or something)
 + migrate strings(commands, messages, ...), colors, ... to commons/Colors Strings.Message Strings.Command etc. <- better management
 + impl. user statistics + improve logging (more info)
++ documentation/user guide
 
 ## Ideas
 - moznost exportovat tasky do img/pdf na vytlacenie

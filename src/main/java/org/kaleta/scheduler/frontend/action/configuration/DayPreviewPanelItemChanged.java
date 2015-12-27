@@ -6,25 +6,19 @@ import org.kaleta.scheduler.frontend.Configurable;
 import org.kaleta.scheduler.service.Service;
 
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Point;
 
 /**
- * Created by Stanislav Kaleta on 30.10.2015.
+ * Created by Stanislav Kaleta on 22.12.2015.
  */
-public class DayPreviewPanelMonthChanged extends ConfigurationAction {
-    private JComponent target;
+public class DayPreviewPanelItemChanged extends ConfigurationAction {
     private Point position;
-    private JLabel labelDayNumber;
     private JProgressBar barIncome;
     private JProgressBar barExpense;
 
-    public DayPreviewPanelMonthChanged(JComponent target, Point position, JLabel labelDayNumber, JProgressBar barIncome, JProgressBar barExpense){
-        super((Configurable) target);
-        this.target = target;
+    public DayPreviewPanelItemChanged(Configurable configurable, Point position, JProgressBar barIncome, JProgressBar barExpense) {
+        super(configurable);
         this.position = position;
-        this.labelDayNumber = labelDayNumber;
         this.barIncome = barIncome;
         this.barExpense = barExpense;
     }
@@ -32,27 +26,6 @@ public class DayPreviewPanelMonthChanged extends ConfigurationAction {
     @Override
     protected void actionPerformed() {
         Day day = Service.dayService().getDayAt(position,getConfiguration().getSelectedMonthId());
-        int dayNumber = day.getDayNumber();
-        if (dayNumber == -1) {
-            for (Component component : target.getComponents()){
-                component.setVisible(false);
-            }
-            target.setEnabled(false);
-            target.setBackground(Color.WHITE);
-            return;
-        } else {
-            for (Component component : target.getComponents()){
-                component.setVisible(true);
-            }
-            target.setEnabled(true);
-            target.setBackground(Color.LIGHT_GRAY);
-        }
-
-        labelDayNumber.setText(String.valueOf(day.getDayNumber()));
-
-        if (day.isPublicFreeDay()) {
-            target.setBorder(BorderFactory.createLineBorder(Color.GREEN));
-        }
 
         String currency = Service.configService().getSettings().getCurrency();
         int dailyMaxIncome = Service.itemService().getMaxDailyIncome(getConfiguration().getSelectedMonthId());
