@@ -1,4 +1,4 @@
-package org.kaleta.scheduler.feature.importing.version1;
+package org.kaleta.scheduler.feature.importing;
 
 import org.kaleta.scheduler.backend.entity.Month;
 import org.kaleta.scheduler.frontend.Configuration;
@@ -13,7 +13,7 @@ import java.awt.Component;
 public class ImportOldDataAction extends MenuAction{
 
     public ImportOldDataAction(Configuration config) {
-        super(config, "From version 1.x...");
+        super(config, "Old Month");
     }
 
     @Override

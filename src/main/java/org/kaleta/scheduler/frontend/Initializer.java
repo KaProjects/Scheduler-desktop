@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class Initializer {
     public static final String NAME = "Scheduler";
-    public static final String VERSION = "2.0-BETA";
+    public static final String VERSION = "2.0";
     public static final String DATA_SOURCE = new File(Initializer.class.getProtectionDomain()
             .getCodeSource().getLocation().getPath())/**/.getParentFile().getPath()
             + "/" + NAME + "-" + VERSION + "-DATA/";

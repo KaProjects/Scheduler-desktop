@@ -50,16 +50,16 @@ public class SchedulePanel extends JPanel {
         Color red = Color.red;
         task.setBackground(new Color(red.getRed(), red.getGreen(), red.getBlue(), 55));
         task.setBorder(BorderFactory.createLineBorder(red));
-        task.add(new JLabel("prednaska - PB152"));
-        task.setToolTipText("<html>10:00 - 11:30<br>Skola<br>prednaska - PB152</html>");
+        task.add(new JLabel("task"));
+        task.setToolTipText("<html>10:00 - 11:30<br>type<br>desc.</html>");
         layerTasks.add(task);
 
         JPanel task2 = new JPanel();
         Color blue = Color.blue;
         task2.setBackground(new Color(blue.getRed(), blue.getGreen(), blue.getBlue(), 55));
         task2.setBorder(BorderFactory.createLineBorder(blue, 2));
-        task2.add(new JLabel("obed s Ludkou v Mazanom andelovi"));
-        task2.setToolTipText("<html>11:30 - 12:00<br>Stretnutie<br>obed s Ludkou v Mazanom andelovi</html>");
+        task2.add(new JLabel("task2"));
+        task2.setToolTipText("<html>11:30 - 12:00<br>type<br>desc.</html>");
         layerTasks.add(task2);
 
         JLayeredPane layeredPane = new JLayeredPane();
@@ -122,17 +122,6 @@ public class SchedulePanel extends JPanel {
                 .addGap(5)
                 .addComponent(buttonAdd));
 
-
-
-
-//        this.getActionMap().put(GuiModel.DAY_CHANGED, new ConfigurationAction() {
-//            @Override
-//            protected void actionPerformed(GuiModel guiModel) {
-//                if (model == null) {
-//                    model = guiModel;
-//                }
-//
-//            }
-//        });
+        // TODO actions month,day,task added
     }
 }

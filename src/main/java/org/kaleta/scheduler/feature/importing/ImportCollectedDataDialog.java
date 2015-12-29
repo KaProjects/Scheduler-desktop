@@ -1,4 +1,4 @@
-package org.kaleta.scheduler.feature.importing.mobile;
+package org.kaleta.scheduler.feature.importing;
 
 import org.kaleta.scheduler.backend.entity.Item;
 import org.kaleta.scheduler.frontend.Initializer;
@@ -68,7 +68,7 @@ public class ImportCollectedDataDialog extends JDialog{
                                 for (TempMonth month : importedMonths) {
                                     JPanel panelBg = new JPanel();
                                     panelBg.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                                    String info = "Month \"" + month.getName() + "\" " + month.getNotImportedItems().size()
+                                    String info = "Month \"" + month.getName() + "\" has " + month.getNotImportedItems().size()
                                             + " not exported items out of " + month.getTotalItemsCount();
                                     JLabel labelInfo = new JLabel(info);
                                     panelBg.add(labelInfo);
@@ -78,8 +78,9 @@ public class ImportCollectedDataDialog extends JDialog{
                                         public void mouseClicked(MouseEvent e) {
                                             boolean result = performImport(month);
                                             if (result) {
-                                                panelBg.setVisible(false);
-                                                ImportCollectedDataDialog.this.pack();
+                                                String info = "Month \"" + month.getName() + "\" has 0 "
+                                                        + " not exported items out of " + month.getTotalItemsCount();
+                                                labelInfo.setText(info);
                                             }
                                         }
                                     });
@@ -133,7 +134,7 @@ public class ImportCollectedDataDialog extends JDialog{
                 .addComponent(labelFoundDeviceName)
                 .addGap(5)
                 .addComponent(panelLoadedMonths)
-                .addGap(5)
+                .addGap(10)
                 .addComponent(buttonCancel)
                 .addGap(10));
     }
@@ -146,8 +147,7 @@ public class ImportCollectedDataDialog extends JDialog{
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 return ipHint;
             } catch  (IOException e) {
-                Initializer.LOG.warning(e.getMessage());
-                new ErrorDialog(e).setVisible(true);
+                JOptionPane.showMessageDialog(this, "Unable connect to set ip address: " + e.getMessage());
                 // continue and start tracing IPs...
             }
         }
@@ -167,7 +167,7 @@ public class ImportCollectedDataDialog extends JDialog{
     }
 
     private boolean collectData(){
-        output.println("demand");
+        output.println("sendData");
         try {
             TempMonth tempMonth = null;
             importedMonths.clear();
@@ -245,7 +245,7 @@ public class ImportCollectedDataDialog extends JDialog{
                 for (Item item : month.getNotImportedItems()){
                     Service.itemService().addItem(item, selectedMonthId, item.getDay());
                 }
-                output.println("imported$"+month.getName());
+                output.println("importedMonth$"+month.getName());
                 return true;
             }
         }

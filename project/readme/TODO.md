@@ -1,6 +1,5 @@
 ## Versions
 ### 2.0
-+ (prerobit android appku(an.19) a tu pridat moznost importovania z nej
 + solve TODOs
 + nejake ikonky pre menu
 + release:

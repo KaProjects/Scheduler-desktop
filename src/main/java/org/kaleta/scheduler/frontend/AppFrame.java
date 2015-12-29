@@ -1,8 +1,9 @@
 package org.kaleta.scheduler.frontend;
 
 import org.kaleta.scheduler.backend.entity.Settings;
-import org.kaleta.scheduler.feature.importing.mobile.ImportCollectedDataAction;
-import org.kaleta.scheduler.feature.importing.version1.ImportOldDataAction;
+import org.kaleta.scheduler.feature.exporting.ExportItemTypesAction;
+import org.kaleta.scheduler.feature.importing.ImportCollectedDataAction;
+import org.kaleta.scheduler.feature.importing.ImportOldDataAction;
 import org.kaleta.scheduler.frontend.action.menu.*;
 import org.kaleta.scheduler.frontend.common.MenuItemWrapper;
 import org.kaleta.scheduler.frontend.panel.AccountingPanel;
@@ -111,13 +112,22 @@ public class AppFrame extends JFrame implements Configuration {
         JMenu fileMenu = new JMenu("File");
         fileMenu.setMnemonic(KeyEvent.VK_F);
         menuBar.add(fileMenu);
+
         JMenu importMenu = new JMenu("Import");
         importMenu.add(new MenuItemWrapper(new ImportOldDataAction(this),
-                KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK)));
+                KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK),
+                "Import whole month from version 1."));
         importMenu.add(new MenuItemWrapper(new ImportCollectedDataAction(this),
-                KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK),
-                "Not implemented yet!"));
+                KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK),
+                "Import items collected in android application to existing month."));
         fileMenu.add(importMenu);
+
+        JMenu exportMenu = new JMenu("Export");
+        exportMenu.add(new MenuItemWrapper(new ExportItemTypesAction(this),
+                KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK),
+                "Export item types to android application."));
+        fileMenu.add(exportMenu);
+
         fileMenu.add(new JSeparator());
         fileMenu.add(new MenuItemWrapper(new OpenSettingsDialog(this),
                 KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK)));

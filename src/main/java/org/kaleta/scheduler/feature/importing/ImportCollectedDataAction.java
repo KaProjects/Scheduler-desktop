@@ -1,4 +1,4 @@
-package org.kaleta.scheduler.feature.importing.mobile;
+package org.kaleta.scheduler.feature.importing;
 
 import org.kaleta.scheduler.frontend.Configuration;
 import org.kaleta.scheduler.frontend.action.menu.MenuAction;
@@ -11,7 +11,7 @@ import java.awt.Component;
 public class ImportCollectedDataAction extends MenuAction{
 
     public ImportCollectedDataAction(Configuration config) {
-        super(config, "From android app...");
+        super(config, "Collected Items");
     }
 
     @Override

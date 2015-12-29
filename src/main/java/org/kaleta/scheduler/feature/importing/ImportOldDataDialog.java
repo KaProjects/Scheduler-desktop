@@ -1,4 +1,4 @@
-package org.kaleta.scheduler.feature.importing.version1;
+package org.kaleta.scheduler.feature.importing;
 
 import org.kaleta.scheduler.backend.entity.Item;
 import org.kaleta.scheduler.backend.entity.Month;

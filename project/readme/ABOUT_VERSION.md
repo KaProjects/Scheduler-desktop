@@ -40,3 +40,4 @@ Released: in progress
     Added possibility to import months from version 1.x. 
     Improved day preview panel.
     Added possibility to import items from android app.
+    Added possibility to export item types to android app.
