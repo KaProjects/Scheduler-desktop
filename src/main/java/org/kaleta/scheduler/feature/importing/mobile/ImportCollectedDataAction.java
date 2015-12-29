@@ -12,7 +12,6 @@ public class ImportCollectedDataAction extends MenuAction{
 
     public ImportCollectedDataAction(Configuration config) {
         super(config, "From android app...");
-        this.setEnabled(false);
     }
 
     @Override
@@ -20,9 +19,6 @@ public class ImportCollectedDataAction extends MenuAction{
         ImportCollectedDataDialog dialog = new ImportCollectedDataDialog();
         dialog.setLocationRelativeTo((Component) getConfiguration());
         dialog.setVisible(true);
-        //if (dialog.getResult()){
-            // TODO impl.
-            // TODO this dialog maybe only will have cancel button, i.e. everything happens inside
-       // }
+        getConfiguration().update(Configuration.ITEM_CHANGED);
     }
 }
