@@ -8,19 +8,14 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 27.7.2015
- *
- * TODO documentation
+ * Created by Stanislav Kaleta on 27.07.2015.
  */
 public class IconLoader {
     public static final int ERROR_ICON = 1;
 
     /**
-     * TODO documentation
-     *
-     * @param iconConstant
-     * @return
+     * Returns icon according to specified constant.
+     * @param iconConstant specific constant
      */
     public static BufferedImage getIcon(int iconConstant){
         switch (iconConstant){

@@ -1,24 +1,20 @@
 package org.kaleta.scheduler.frontend.wizard.content;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 1.8.2015
+ * Created by Stanislav Kaleta on 01.08.2015.
  *
- * TODO documentation
+ * Provides basic methods for wizard pages. Every wizard page (panel) should implement this.
  */
 public interface WizardPanel {
 
     /**
-     * TODO documentation
-     *
-     * @return
+     * Returns state of wizard page.
+     * @return true if page is fully filled, false otherwise.
      */
-    public boolean isFilled();
+    boolean isFilled();
 
     /**
-     * TODO documentation
-     *
-     * @param flag
+     * Just shows component's method while using interface type.
      */
-    public void setVisible(boolean flag);
+    void setVisible(boolean flag);
 }

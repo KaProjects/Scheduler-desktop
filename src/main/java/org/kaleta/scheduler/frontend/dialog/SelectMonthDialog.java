@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 /**
  * Created by Stanislav Kaleta on 26.08.2015.
+ *
+ * Dialog which provides selecting month.
  */
 public class SelectMonthDialog extends JDialog {
     private boolean result;

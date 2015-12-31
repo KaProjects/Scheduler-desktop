@@ -3,15 +3,15 @@ package org.kaleta.scheduler.frontend.wizard.content;
 import org.kaleta.scheduler.backend.entity.UserType;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 1.8.2015
+ * Created by Stanislav Kaleta on 01.08.2015.
  */
 public class TypeSettingsPanel extends JPanel implements WizardPanel {
     public static final int TASK = 0;

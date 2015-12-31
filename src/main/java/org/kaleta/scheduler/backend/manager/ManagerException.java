@@ -1,8 +1,7 @@
 package org.kaleta.scheduler.backend.manager;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 23.7.2015
+ *  Created by Stanislav Kaleta on 23.07.2015.
  */
 public class ManagerException extends Exception {
 

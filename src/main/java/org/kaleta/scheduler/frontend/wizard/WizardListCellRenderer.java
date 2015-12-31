@@ -1,21 +1,21 @@
 package org.kaleta.scheduler.frontend.wizard;
 
-import com.sun.corba.se.spi.orbutil.threadpool.ThreadPoolManager;
-
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 1.8.2015
+ * Created by Stanislav Kaleta on 01.08.2015.
  */
 public class WizardListCellRenderer extends DefaultListCellRenderer {
     private WizardContentPanel contentPanel;
     private boolean isSelected;
 
-        public WizardListCellRenderer(WizardContentPanel contentPanel){
-            this.contentPanel = contentPanel;
-            isSelected = false;
+    public WizardListCellRenderer(WizardContentPanel contentPanel) {
+        this.contentPanel = contentPanel;
+        isSelected = false;
     }
 
     @Override

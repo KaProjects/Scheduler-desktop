@@ -1,7 +1,7 @@
 package org.kaleta.scheduler.frontend.wizard.content;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 

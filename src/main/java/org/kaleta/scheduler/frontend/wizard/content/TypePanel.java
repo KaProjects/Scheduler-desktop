@@ -3,7 +3,9 @@ package org.kaleta.scheduler.frontend.wizard.content;
 import org.kaleta.scheduler.backend.entity.UserType;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

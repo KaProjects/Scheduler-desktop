@@ -85,9 +85,8 @@ public class Month {
         if (name != null ? !name.equals(month.name) : month.name != null) return false;
         if (publicFreeDays != null ? !publicFreeDays.equals(month.publicFreeDays) : month.publicFreeDays != null)
             return false;
-        if (tasks != null ? !tasks.equals(month.tasks) : month.tasks != null) return false;
+        return !(tasks != null ? !tasks.equals(month.tasks) : month.tasks != null);
 
-        return true;
     }
 
     @Override

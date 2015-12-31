@@ -1,13 +1,12 @@
 package org.kaleta.scheduler.backend.entity;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 24.7.2015
+ * Created by Stanislav Kaleta on 24.07.2015.
  */
 public class Task {
     private Integer id;
     private String type;
-    private String description; //TODO maybe title/ what if long
+    private String description;
     private Integer day;
     private Time starts;
     private Time duration;
@@ -103,9 +102,8 @@ public class Task {
         if (priority != null ? !priority.equals(task.priority) : task.priority != null) return false;
         if (starts != null ? !starts.equals(task.starts) : task.starts != null) return false;
         if (successful != null ? !successful.equals(task.successful) : task.successful != null) return false;
-        if (type != null ? !type.equals(task.type) : task.type != null) return false;
+        return !(type != null ? !type.equals(task.type) : task.type != null);
 
-        return true;
     }
 
     @Override

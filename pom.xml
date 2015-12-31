@@ -6,7 +6,7 @@
 
     <groupId>org.kaleta</groupId>
     <artifactId>Scheduler</artifactId>
-    <version>2.0-BETA</version>
+    <version>2.0</version>
 
     <properties>
         <vendor.url/>
@@ -36,10 +36,7 @@
                         <pomPropertiesFile/>
           	        </archive>
         	    </configuration>
-
       	    </plugin>
     	</plugins>
     </build>
-
-
 </project>

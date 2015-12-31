@@ -16,8 +16,7 @@ import javax.xml.validation.SchemaFactory;
 import java.io.File;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 23.7.2015
+ * Created by Stanislav Kaleta on 23.07.2015.
  */
 public class JaxbMonthManager implements MonthManager {
     private final String schemaUri;
@@ -51,7 +50,7 @@ public class JaxbMonthManager implements MonthManager {
                     (org.kaleta.scheduler.backend.manager.jaxb.model.Month) unmarshaller.unmarshal(file);
             month = ModelUtil.transformMonthToData(model);
         } catch (Exception e) {
-            throw new ManagerException(e);
+            throw new ManagerException("Error while retrieving month with id=" + id + ": ",e);
         }
         return month;
     }
@@ -74,7 +73,7 @@ public class JaxbMonthManager implements MonthManager {
             marshaller.marshal(model,new DefaultHandler());
             marshaller.marshal(model, file);
         } catch (Exception e) {
-            throw new ManagerException(e);
+            throw new ManagerException("Error while updating month with id=\"" + month.getId() + "\": ",e);
         }
     }
 

@@ -70,9 +70,8 @@ public class GlobalTask {
         if (finished != null ? !finished.equals(that.finished) : that.finished != null) return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (priority != null ? !priority.equals(that.priority) : that.priority != null) return false;
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
+        return !(type != null ? !type.equals(that.type) : that.type != null);
 
-        return true;
     }
 
     @Override

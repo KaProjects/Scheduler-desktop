@@ -10,10 +10,9 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 27.7.2015
+ * Created by Stanislav Kaleta on 27.07.2015.
  *
- * Dialog window which show error message (and details) for specified exception.
+ * Dialog window which shows error message (and details) for specified exception.
  */
 public class ErrorDialog extends JDialog {
     private Exception exception;
@@ -82,10 +81,7 @@ public class ErrorDialog extends JDialog {
         JTextArea exceptionTextArea = new JTextArea();
         exceptionTextArea.setEditable(false);
 
-        Writer writer = new StringWriter();
-        PrintWriter printWriter = new PrintWriter(writer);
-        exception.printStackTrace(printWriter);
-        exceptionTextArea.setText(writer.toString());
+        exceptionTextArea.setText(getExceptionStackTrace(exception));
 
         exceptionScrollPane = new JScrollPane(exceptionTextArea);
         exceptionScrollPane.setVisible(false);
@@ -110,9 +106,23 @@ public class ErrorDialog extends JDialog {
                         .addComponent(errorIcon, 50, 50, 50)
                         .addComponent(labelError, GroupLayout.Alignment.CENTER, 50, 50, 50))
                 .addComponent(toggleButton, 20, 20, 20)
-                .addComponent(exceptionScrollPane,0,GroupLayout.PREFERRED_SIZE,300)
+                .addComponent(exceptionScrollPane, 0, GroupLayout.PREFERRED_SIZE, 300)
                 .addGap(20)
                 .addComponent(buttonClose)
-        .addGap(10));
+                .addGap(10));
+    }
+
+    public String getExceptionStackTrace(){
+        return getExceptionStackTrace(exception);
+    }
+
+    /**
+     * Returns stack trace for specified exception as String.
+     */
+    public static String getExceptionStackTrace(Exception exception){
+        Writer writer = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(writer);
+        exception.printStackTrace(printWriter);
+        return writer.toString();
     }
 }
