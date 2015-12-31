@@ -4,8 +4,9 @@
     - impl. & desing graphs etc.
 + edit months (order, edit name, delete)
     - this will need sorted months via order in MonthService.getMonthsOrder method
-+ solve l&f bug
 + some icons for menu (also arrows)
++ solve l&f bug
++ impl. user statistics + improve logging (more info)
 
 ### 2.x
 + impl. & design Tasks
@@ -20,7 +21,6 @@
     
 + check all user inputs (in dialogs) + react to them (maybe beans or something)
 + migrate strings(commands, messages, ...), colors, ... to commons/Colors Strings.Message Strings.Command etc. <- better management
-+ impl. user statistics + improve logging (more info)
 + documentation/user guide
 
 ## Ideas
