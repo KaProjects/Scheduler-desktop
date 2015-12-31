@@ -17,6 +17,8 @@ import java.util.List;
 
 /**
  * Created by Stanislav Kaleta on 24.08.2015.
+ *
+ * Dialog which provides creating new month.
  */
 public class CreateMonthDialog extends JDialog {
     private boolean result;

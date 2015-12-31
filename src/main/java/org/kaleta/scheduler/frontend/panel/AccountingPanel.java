@@ -15,6 +15,8 @@ import javax.swing.table.TableColumnModel;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Stanislav Kaleta on 06.08.2015.
@@ -62,36 +64,17 @@ public class AccountingPanel extends JPanel implements Configurable {
         JButton buttonAdd = new JButton("Add Item");
         buttonAdd.addMouseListener(new AccountingPanelAddItemClicked(this));
 
-        JScrollPane scrollPane = new JScrollPane(tableAccounting){
-            @Override
-            public Dimension getPreferredSize() {
-                return new Dimension(super.getPreferredSize().width, getFixedHeight());
-            }
-
-            @Override
-            public Dimension getMaximumSize() {
-                return new Dimension(super.getMaximumSize().width, getFixedHeight());
-            }
-
-            @Override
-            public Dimension getMinimumSize() {
-                return new Dimension(super.getMinimumSize().width, getFixedHeight());
-            }
-
-            private int getFixedHeight(){
-                return tableAccounting.getHeight() + 30;
-            }
-        };
+        JScrollPane scrollPane = new JScrollPane(tableAccounting);
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup()
-                .addComponent(scrollPane)
-                .addComponent(buttonAdd, GroupLayout.Alignment.CENTER));
+                .addComponent(buttonAdd, GroupLayout.Alignment.CENTER)
+                .addComponent(scrollPane));
         layout.setVerticalGroup(layout.createSequentialGroup()
-                .addComponent(scrollPane)
+                .addComponent(buttonAdd)
                 .addGap(5)
-                .addComponent(buttonAdd));
+                .addComponent(scrollPane));
 
         this.getActionMap().put(Configuration.INIT_CONFIG, new InitConfigurableAction(this));
         this.getActionMap().put(Configuration.DAY_CHANGED, new AccountingPanelDayChanged(this,tableAccounting));

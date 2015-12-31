@@ -24,6 +24,9 @@ public class ImportOldDataAction extends MenuAction{
         if (dialog.getResult()){
             Month month = dialog.getImportedMonth();
             Service.monthService().createMonth(month);
+            if (dialog.wantToSelectImportedMonth()){
+                getConfiguration().selectMonth(month.getId());
+            }
         }
     }
 }

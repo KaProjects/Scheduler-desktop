@@ -14,10 +14,10 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import java.io.File;
+import java.util.Arrays;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 24.7.2015
+ * Created by Stanislav Kaleta on 24.07.2015.
  */
 public class JaxbSettingsManager implements SettingsManager {
     private final String schemaUri;

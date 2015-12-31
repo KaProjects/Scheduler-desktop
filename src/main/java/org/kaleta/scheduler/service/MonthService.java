@@ -8,11 +8,14 @@ import org.kaleta.scheduler.backend.manager.MonthManager;
 import org.kaleta.scheduler.backend.manager.jaxb.JaxbGlobalManager;
 import org.kaleta.scheduler.backend.manager.jaxb.JaxbMonthManager;
 import org.kaleta.scheduler.frontend.Initializer;
+import org.kaleta.scheduler.frontend.common.ErrorDialog;
 
 import java.util.Map;
 
 /**
  * Created by Stanislav Kaleta on 30.10.2015.
+ *
+ * Provides access to data source which is related to months.
  */
 public class MonthService {
 
@@ -21,8 +24,7 @@ public class MonthService {
     }
 
     /**
-     * TODO documentation
-     * @param month
+     * Creates new month in data source.
      */
     public void createMonth(Month month) {
         try {
@@ -48,32 +50,29 @@ public class MonthService {
             global.getMonths().put(newId, newOrder);
             globalManager.updateGlobal(global);
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }
 
     /**
-     * TODO documentation
-     * @return
+     * Returns ordering of months as Map (key = month id, value = month order).
      */
     public Map<Integer,Integer> getMonthsOrder(){
         try {
             GlobalManager manager = new JaxbGlobalManager();
             Global global = manager.retrieveGlobal();
-            //TODO sort via order in case to unordered data
             return global.getMonths();
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
 
     }
 
     /**
-     * TODO documentation
-     * @param monthId
-     * @return
+     * Returns name of month with specified id.
+     * @param monthId - id of month which name has to be returned
      */
     public String getMonthName(int monthId) {
         try {
@@ -81,7 +80,7 @@ public class MonthService {
             Month month = manager.retrieveMonth(monthId);
             return month.getName();
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }

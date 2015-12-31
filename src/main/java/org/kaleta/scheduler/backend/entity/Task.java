@@ -1,13 +1,12 @@
 package org.kaleta.scheduler.backend.entity;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 24.7.2015
+ * Created by Stanislav Kaleta on 24.07.2015.
  */
 public class Task {
     private Integer id;
     private String type;
-    private String description; //TODO maybe title/ what if long
+    private String description;
     private Integer day;
     private Time starts;
     private Time duration;

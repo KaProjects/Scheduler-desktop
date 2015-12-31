@@ -14,6 +14,8 @@ import java.net.Socket;
 
 /**
  * Created by Stanislav Kaleta on 29.12.2015.
+ *
+ * Dialog which provides exporting Item types to specific device.
  */
 public class ExportItemTypesDialog extends JDialog {
     private BufferedReader input;

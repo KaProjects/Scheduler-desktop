@@ -20,7 +20,7 @@ Released: 8.10.2014
     Implemented settings resource to remember last config (added last selected week).
     
 ## 2.0-BETA
-Released: summer 2015
+Released: september 2015
 
     Completely reworked back-end of application (the core are services which using implementations of managers). 
     For now, managers has only one implementation - using JAXB API and XSD schema. 
@@ -34,10 +34,11 @@ Released: summer 2015
     Partially finished (just accounting - now focus on testing and using - rest in 2.0).
     
 # 2.0
-Released: in progress
+Released: 31.12.2015
 
     Improved services, configuration, migrated actions to classes. 
     Added possibility to import months from version 1.x. 
     Improved day preview panel.
     Added possibility to import items from android app.
     Added possibility to export item types to android app.
+    Minor bug fixes.

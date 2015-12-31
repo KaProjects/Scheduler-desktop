@@ -10,11 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Stanislav Kaleta
  * Date: 28.7.2014
- * To change this template use File | Settings | File Templates.
  */
+@Deprecated
 public class Graph0 extends JComponent {
     private int numberOfDays;
     private Map<Integer,Integer> incomes;

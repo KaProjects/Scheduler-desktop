@@ -1,5 +1,8 @@
 package org.kaleta.scheduler.frontend.common;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Date;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -7,8 +10,9 @@ import java.util.logging.LogRecord;
 import java.util.logging.SimpleFormatter;
 
 /**
- * User: Stanislav Kaleta
- * Date: 23.6.2015
+ * Created by Stanislav Kaleta on 23.06.2015.
+ *
+ * Basic log formatter.
  */
 public class LogFormatter extends SimpleFormatter {
 
@@ -38,5 +42,4 @@ public class LogFormatter extends SimpleFormatter {
     public String getTail(Handler h) {
         return "######### Application ended #########\n";
     }
-
 }

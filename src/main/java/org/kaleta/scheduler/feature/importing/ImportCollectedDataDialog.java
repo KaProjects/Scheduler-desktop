@@ -24,6 +24,8 @@ import java.util.Map;
 
 /**
  * Created by Stanislav Kaleta on 13.11.2015.
+ *
+ * Dialog which provides importing collected items from mobile device.
  */
 public class ImportCollectedDataDialog extends JDialog{
     private BufferedReader input;
@@ -191,7 +193,12 @@ public class ImportCollectedDataDialog extends JDialog{
                     Item item = new Item();
                     String[] values = recordReceived.split("\\$");
                     item.setIncome(values[1].equals("+"));
-                    item.setAmount(BigDecimal.valueOf(Double.valueOf(values[2])));
+                    if (values[2].endsWith(".0")){
+                        String value = values[2].substring(0,values[2].length() - 2);
+                        item.setAmount(BigDecimal.valueOf(Integer.parseInt(value)));
+                    } else {
+                        item.setAmount(BigDecimal.valueOf(Double.parseDouble(values[2])));
+                    }
                     item.setDay(Integer.valueOf(values[3]));
                     item.setType(values[4]);
                     if (values.length < 6){
@@ -211,8 +218,9 @@ public class ImportCollectedDataDialog extends JDialog{
             }
             return true;
         } catch (IOException e) {
-            Initializer.LOG.severe(e.getMessage());
-            new ErrorDialog(e).setVisible(true);
+            ErrorDialog errorDialog = new ErrorDialog(e);
+            Initializer.LOG.severe(errorDialog.getExceptionStackTrace());
+            errorDialog.setVisible(true);
             return false;
         }
     }

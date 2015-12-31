@@ -15,11 +15,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Stanislav Kaleta
  * Date: 30.7.2014
- * To change this template use File | Settings | File Templates.
  */
+@Deprecated
 public class Graph2 extends JComponent {
     private int numberOfDays;
     private Map<Integer,Integer> costs;
@@ -46,7 +45,7 @@ public class Graph2 extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        /*TODO graph*/
+        // not implemented
     }
 
     public void setData(int numberOfDays, java.util.List<Item> items){
@@ -172,19 +171,19 @@ public class Graph2 extends JComponent {
     }
 
     private void getItemTypes() {
-        try {                                         /*TODO delete creating files!! no need to create here, ... but exception if external problem*/
+        try {
             StringBuilder sb = new StringBuilder(getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
             sb.append("resources/");
             File resourcesDir = new File(sb.toString());
             if (!resourcesDir.exists()){
                 resourcesDir.mkdir();
-                System.out.println("dir created: "+sb.toString()); /*TODO log*/
+                System.out.println("dir created: "+sb.toString());
             }
             sb.append("ItemTypes.txt");
             File resourcesFile = new File(sb.toString());
             if (!resourcesFile.exists()) {
                 resourcesFile.createNewFile();
-                System.out.println("file created: "+sb.toString()); /*TODO log*/
+                System.out.println("file created: "+sb.toString());
             }
             BufferedReader br = new BufferedReader(new FileReader(resourcesFile));
             String line;
@@ -196,7 +195,7 @@ public class Graph2 extends JComponent {
 
             }
         } catch (IOException ex){
-            ex.printStackTrace(); /*TODO log*/
+            ex.printStackTrace();
         }
     }
 }

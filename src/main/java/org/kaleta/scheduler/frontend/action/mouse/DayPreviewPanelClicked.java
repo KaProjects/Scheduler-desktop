@@ -30,6 +30,4 @@ public class DayPreviewPanelClicked extends MouseAction {
         getConfiguration().selectDay(day.getDayNumber());
         target.grabFocus();
     }
-
-
 }

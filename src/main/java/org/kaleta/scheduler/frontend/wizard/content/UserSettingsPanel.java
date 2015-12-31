@@ -4,8 +4,7 @@ import javax.swing.*;
 import java.awt.Font;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 1.8.2015
+ * Created by Stanislav Kaleta on 01.08.2015.
  */
 public class UserSettingsPanel extends JPanel implements WizardPanel {
     private JTextField textFieldName;

@@ -8,11 +8,14 @@ import org.kaleta.scheduler.backend.manager.ManagerException;
 import org.kaleta.scheduler.backend.manager.MonthManager;
 import org.kaleta.scheduler.backend.manager.jaxb.JaxbMonthManager;
 import org.kaleta.scheduler.frontend.Initializer;
+import org.kaleta.scheduler.frontend.common.ErrorDialog;
 
 import java.awt.Point;
 
 /**
  * Created by Stanislav Kaleta on 30.10.2015.
+ *
+ *  Provides access to data source which is related to days.
  */
 public class DayService {
 
@@ -21,10 +24,9 @@ public class DayService {
     }
 
     /**
-     * TODO documentation
-     * @param position
-     * @param monthId
-     * @return
+     * Returns day which is at specified position in day/week map.
+     * @param position - position of day, where x = day in week and y = number of week
+     * @param monthId - id of related month
      */
     public Day getDayAt(Point position, Integer monthId) {
         try {
@@ -41,16 +43,15 @@ public class DayService {
 
             return getDay(dayNumber, monthId);
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }
 
     /**
-     * TODO documentation
-     * @param dayNumber
-     * @param monthId
-     * @return
+     * Returns object of day according to his number and month id.
+     * @param dayNumber number of day
+     * @param monthId id of month
      */
     public Day getDay(int dayNumber, Integer monthId) {
         try {
@@ -86,7 +87,7 @@ public class DayService {
 
             return day;
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }

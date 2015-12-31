@@ -11,8 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 28.7.2015
+ * Created by Stanislav Kaleta on 28.07.2015.
  */
 public class WizardDialog extends JDialog{
     private boolean result;

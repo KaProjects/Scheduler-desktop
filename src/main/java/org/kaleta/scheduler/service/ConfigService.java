@@ -10,6 +10,7 @@ import org.kaleta.scheduler.backend.manager.jaxb.JaxbGlobalManager;
 import org.kaleta.scheduler.backend.manager.jaxb.JaxbMonthManager;
 import org.kaleta.scheduler.backend.manager.jaxb.JaxbSettingsManager;
 import org.kaleta.scheduler.frontend.Initializer;
+import org.kaleta.scheduler.frontend.common.ErrorDialog;
 import org.kaleta.scheduler.frontend.wizard.WizardDialog;
 
 import java.io.File;
@@ -17,6 +18,8 @@ import java.io.IOException;
 
 /**
  * Created by Stanislav Kaleta on 13.11.2015.
+ *
+ * Provides access to data source which is related to configuration.
  */
 public class ConfigService {
 
@@ -25,7 +28,7 @@ public class ConfigService {
     }
 
     /**
-     * TODO documentation
+     * Checks that every resource is alright, throws ServiceFailureException if not.
      */
     public void checkResources() {
         File dataSourceFile = new File(Initializer.DATA_SOURCE);
@@ -70,7 +73,7 @@ public class ConfigService {
     }
 
     /**
-     * TODO documentation (create set,glob + try to load all months)
+     * Checks that data are valid, throws ServiceFailureException if not.
      */
     public void checkData(){
         File settingsFile = new File(Initializer.DATA_SOURCE + "settings.xml");
@@ -113,7 +116,8 @@ public class ConfigService {
     }
 
     /**
-     * TODO documentation
+     * Checks whether app. is started for first time or not. If yes, creates necessary resources
+     * and shows settings wizard dialog in order to obtains necessary settings.
      */
     public void checkFirstUse() {
         try {
@@ -148,61 +152,56 @@ public class ConfigService {
                 }
             }
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }
 
     /**
-     * TODO documentation
-     * @param settings
+     * Updates whole settings in data source.
+     * This method is used only for applying changes after overall editing of settings via its dialog.
      */
     public void updateSettings(Settings settings) {
         try {
             SettingsManager manager = new JaxbSettingsManager();
             manager.updateSettings(settings);
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }
 
     /**
-     * TODO documentation
-     * @return
+     * Gets whole settings from data source.
      */
     public Settings getSettings() {
         try {
             SettingsManager manager = new JaxbSettingsManager();
             return manager.retrieveSettings();
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }
 
     /**
-     * TODO documentation
-     * @param currentlySelectedMonthId
+     * Saves last selected month's id to data source, so it can be selected in following start of app.
      */
     public void monthChanged(Integer currentlySelectedMonthId){
         try {
-            // need to check if month exists, no just set it
-            // (otherwise causing many problems in gui)
             new JaxbMonthManager().retrieveMonth(currentlySelectedMonthId);
             SettingsManager manager = new JaxbSettingsManager();
             Settings settings = manager.retrieveSettings();
             settings.setLastMonthSelectedId(currentlySelectedMonthId);
             manager.updateSettings(settings);
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }
 
     /**
-     * TODO documentation
-     * @param currentlySelectedDayNumber
+     * Saves last selected day's number to data source, so it can be selected in following start of app.
      */
     public void dayChanged(Integer currentlySelectedDayNumber){
         try {
@@ -211,7 +210,7 @@ public class ConfigService {
             settings.setLastDaySelected(currentlySelectedDayNumber);
             manager.updateSettings(settings);
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }

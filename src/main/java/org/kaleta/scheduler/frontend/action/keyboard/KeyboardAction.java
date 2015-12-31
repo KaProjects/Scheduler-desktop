@@ -10,6 +10,8 @@ import java.awt.event.KeyEvent;
 
 /**
  * Created by Stanislav Kaleta on 11.11.2015.
+ *
+ * Basic class for action reacting to keyboard event.
  */
 abstract public class KeyboardAction extends KeyAdapter {
     private Configurable configurable;
@@ -32,8 +34,6 @@ abstract public class KeyboardAction extends KeyAdapter {
             }.execute();
         }
     }
-
-
 
     protected abstract void actionPerformed();
 

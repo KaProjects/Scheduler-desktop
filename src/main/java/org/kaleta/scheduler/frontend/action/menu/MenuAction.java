@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 
 /**
  * Created by Stanislav Kaleta on 11.11.2015.
+ *
+ * Basic class for every menu action.
  */
 abstract public class MenuAction extends AbstractAction {
     private Configuration config;

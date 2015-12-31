@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 23.7.2015
+ *  Created by Stanislav Kaleta on 23.07.2015.
+ *
+ *  JAXB model of Settings
  */
 @XmlType(name = "settingsType")
 @XmlRootElement(name = "settings")

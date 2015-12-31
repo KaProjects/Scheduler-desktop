@@ -17,8 +17,7 @@ import javax.xml.validation.SchemaFactory;
 import java.io.File;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 24.7.2015
+ * Created by Stanislav Kaleta on 24.07.2015.
  */
 public class JaxbGlobalManager implements GlobalManager {
     private final String schemaUri;

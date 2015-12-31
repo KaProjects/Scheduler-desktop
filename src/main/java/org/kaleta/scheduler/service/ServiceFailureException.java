@@ -1,8 +1,7 @@
 package org.kaleta.scheduler.service;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 27.7.2015
+ * Created by Stanislav Kaleta on 27.07.2015.
  */
 public class ServiceFailureException extends RuntimeException {
 

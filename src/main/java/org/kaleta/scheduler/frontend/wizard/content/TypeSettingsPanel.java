@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 1.8.2015
+ * Created by Stanislav Kaleta on 01.08.2015.
  */
 public class TypeSettingsPanel extends JPanel implements WizardPanel {
     public static final int TASK = 0;

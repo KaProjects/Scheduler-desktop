@@ -19,11 +19,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Stanislav Kaleta
  * Date: 31.7.2014
- * To change this template use File | Settings | File Templates.
  */
+@Deprecated
 public class Graph3 extends JComponent {
     private Map<String,Integer> totalCostsForTypes;
     private Map<String,Float> dailyCostsForTypes;
@@ -35,13 +34,10 @@ public class Graph3 extends JComponent {
         dailyCostsForTypes = new HashMap<String, Float>();
         totalCosts = 0;
         dailyCosts = 0f;
-
-
-
     }
 
     @Override
-    protected void paintComponent(Graphics g) {                                /*TODO position+format+design*/
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.black);
@@ -86,19 +82,19 @@ public class Graph3 extends JComponent {
     }
 
     public void setData(int numberOfDays, java.util.List<Item> items) {
-        try {                                                                /*TODO delete creating files!! no need to create here, ... but exception if external problem*/
+        try {
             StringBuilder sb = new StringBuilder(getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
             sb.append("resources/");
             File resourcesDir = new File(sb.toString());
             if (!resourcesDir.exists()){
                 resourcesDir.mkdir();
-                System.out.println("dir created: "+sb.toString()); /*TODO log*/
+                System.out.println("dir created: "+sb.toString());
             }
             sb.append("ItemTypes.txt");
             File resourcesFile = new File(sb.toString());
             if (!resourcesFile.exists()) {
                 resourcesFile.createNewFile();
-                System.out.println("file created: "+sb.toString()); /*TODO log*/
+                System.out.println("file created: "+sb.toString());
             }
             BufferedReader br = new BufferedReader(new FileReader(resourcesFile));
             String line;
@@ -110,7 +106,7 @@ public class Graph3 extends JComponent {
                 }
             }
         } catch (IOException ex){
-            ex.printStackTrace(); /*TODO log*/
+            ex.printStackTrace();
         }
         for (Item item : items){
             if (totalCostsForTypes.containsKey(item.getType()) && dailyCostsForTypes.containsKey(item.getType())) {

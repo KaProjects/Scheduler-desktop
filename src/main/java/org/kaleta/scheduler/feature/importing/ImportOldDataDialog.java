@@ -37,6 +37,7 @@ public class ImportOldDataDialog extends JDialog {
     private Document document;
 
     private JFileChooser fileChooser;
+    private JCheckBox checkBoxSelectMonth;
 
     public ImportOldDataDialog(){
         result = false;
@@ -66,15 +67,17 @@ public class ImportOldDataDialog extends JDialog {
         panelState.add(labelInfo);
 
         JTextArea textAreaData = new JTextArea();
-        textAreaData.setFont(new Font(textAreaData.getFont().getName(),0,15));
+        textAreaData.setFont(new Font(textAreaData.getFont().getName(), 0, 15));
         textAreaData.setEditable(false);
         JScrollPane scrollPaneData = new JScrollPane(textAreaData);
         scrollPaneData.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        //TODO solve scrollpane resize after scroll bar appear (bar blocking view)
         scrollPaneData.setVisible(false);
 
         JButton buttonImport = new JButton("Import");
         buttonImport.setEnabled(false);
+
+        checkBoxSelectMonth = new JCheckBox("Select Month After Import");
+        checkBoxSelectMonth.setVisible(false);
 
         JButton buttonCancel = new JButton("Cancel");
 
@@ -87,6 +90,7 @@ public class ImportOldDataDialog extends JDialog {
                         .addComponent(buttonSelectFile)
                         .addComponent(panelState)
                         .addComponent(scrollPaneData)
+                        .addComponent(checkBoxSelectMonth)
                         .addGroup(GroupLayout.Alignment.CENTER, layout.createSequentialGroup()
                                 .addComponent(buttonImport, 80, 80, 80)
                                 .addGap(5)
@@ -99,6 +103,8 @@ public class ImportOldDataDialog extends JDialog {
                 .addComponent(panelState, 35, 35, 35)
                 .addGap(5)
                 .addComponent(scrollPaneData, 50, 200, Short.MAX_VALUE)
+                .addGap(5)
+                .addComponent(checkBoxSelectMonth)
                 .addGap(5)
                 .addGroup(layout.createParallelGroup()
                         .addComponent(buttonImport, 25, 25, 25)
@@ -113,6 +119,8 @@ public class ImportOldDataDialog extends JDialog {
                 labelFileName.setText("<NO FILE SELECTED>");
                 labelInfo.setText("");
                 textAreaData.setText("");
+                checkBoxSelectMonth.setVisible(false);
+                checkBoxSelectMonth.setSelected(false);
                 ImportOldDataDialog.this.pack();
                 int result = fileChooser.showOpenDialog(ImportOldDataDialog.this);
                 if (result == JFileChooser.APPROVE_OPTION) {
@@ -158,6 +166,7 @@ public class ImportOldDataDialog extends JDialog {
                 }
 
                 scrollPaneData.setVisible(true);
+                checkBoxSelectMonth.setVisible(true);
                 ImportOldDataDialog.this.pack();
                 buttonLoadData.setEnabled(false);
                 buttonImport.setEnabled(true);
@@ -239,5 +248,9 @@ public class ImportOldDataDialog extends JDialog {
 
     public Month getImportedMonth(){
         return loadMonth(document);
+    }
+
+    public boolean wantToSelectImportedMonth(){
+        return checkBoxSelectMonth.isSelected();
     }
 }

@@ -6,6 +6,8 @@ import javax.swing.*;
 
 /**
  * Created by Stanislav Kaleta on 30.10.2015.
+ *
+ * Handles executing in Swing Worker thread. Every GUI action should extend this class.
  */
 public abstract class SwingWorkerHandler {
 
@@ -16,9 +18,8 @@ public abstract class SwingWorkerHandler {
                 try {
                     runInBackground();
                 } catch (ServiceFailureException e){
-                    // No need to log here. Cause is (should be) always logged before SFEx is threw.
-                    JDialog errorDialog = new ErrorDialog(e);
-                    errorDialog.setVisible(true);
+                    // No need to log here. Cause exc. is (should be) always logged before SFEx is thrown.
+                    new ErrorDialog(e).setVisible(true);
                 }
                 return null;
             }

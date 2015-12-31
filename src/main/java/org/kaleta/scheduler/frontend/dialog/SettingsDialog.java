@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 
 /**
  * Created by Stanislav Kaleta on 24.08.2015.
+ *
+ * Dialog which provides updating settings.
  */
 public class SettingsDialog extends JDialog {
     private boolean result;

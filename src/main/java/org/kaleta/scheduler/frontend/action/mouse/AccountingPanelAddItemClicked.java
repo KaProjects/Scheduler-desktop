@@ -14,7 +14,6 @@ import java.awt.event.MouseEvent;
  */
 public class AccountingPanelAddItemClicked extends MouseAction{
 
-
     public AccountingPanelAddItemClicked(Configurable configurable) {
         super(configurable);
     }

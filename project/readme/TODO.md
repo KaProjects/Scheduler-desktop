@@ -1,17 +1,11 @@
 ## Versions
-### 2.0
-+ solve TODOs
-+ nejake ikonky pre menu
-+ release:
-    - Scheduler-2.0.jar -> project/production
-    - git release workflow(branch/tag/merge) + inspect code + check documentation and code adjustment (unnecessary blank rows, spaces, etc.)
-    - update ABOUT_VERSION
-
 ### 2.1 
 + analytics
     - impl. & desing graphs etc.
 + edit months (order, edit name, delete)
+    - this will need sorted months via order in MonthService.getMonthsOrder method
 + solve l&f bug
++ some icons for menu (also arrows)
 
 ### 2.x
 + impl. & design Tasks
@@ -21,6 +15,7 @@
     - design & impl. day schedule panel
     - design & impl. add/edit/del task in day panel
     - vyriesit pridavanie opakujucich sa taskov (napr. menu-Task-Add Repeating Task-zaskrtnut dni(zo selectnuteho mesiaca) kedy)
+    - type,desc -> title,desc.,type,subtype
     - design & impl. global panel (including month control)
     
 + check all user inputs (in dialogs) + react to them (maybe beans or something)

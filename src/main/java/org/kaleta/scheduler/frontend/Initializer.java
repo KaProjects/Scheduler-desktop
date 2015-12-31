@@ -14,8 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 23.7.2015
+ * Created by Stanislav Kaleta on 23.07.2015.
+ *
+ * Performs initialization of this app. Includes data and resources checks, app. wide constants and default logger.
  */
 public class Initializer {
     public static final String NAME = "Scheduler";

@@ -9,11 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Stanislav Kaleta
  * Date: 31.7.2014
- * To change this template use File | Settings | File Templates.
  */
+@Deprecated
 public class Graph1 extends JComponent {
     private int numberOfDays;
     private Map<Integer,Integer> balance;

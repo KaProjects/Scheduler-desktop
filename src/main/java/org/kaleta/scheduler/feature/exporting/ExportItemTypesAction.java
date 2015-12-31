@@ -1,6 +1,5 @@
 package org.kaleta.scheduler.feature.exporting;
 
-import org.kaleta.scheduler.feature.importing.ImportCollectedDataDialog;
 import org.kaleta.scheduler.frontend.Configuration;
 import org.kaleta.scheduler.frontend.action.menu.MenuAction;
 

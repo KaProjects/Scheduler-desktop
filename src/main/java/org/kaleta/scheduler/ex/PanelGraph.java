@@ -14,11 +14,10 @@ import java.awt.Graphics;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
  * User: Stanislav Kaleta
  * Date: 28.7.2014
- * To change this template use File | Settings | File Templates.
  */
+@Deprecated
 public class PanelGraph extends JPanel {
     private List<Item> items;
     private int numberOfDays;
@@ -70,7 +69,7 @@ public class PanelGraph extends JPanel {
         graph.setPreferredSize(new Dimension(30 * numberOfDays + 95, 650));
         graph.setData(numberOfDays, items);
         panelGraph0.removeAll();
-        panelGraph0.setBorder(BorderFactory.createTitledBorder("Graph"));  /*TODO locale*/
+        panelGraph0.setBorder(BorderFactory.createTitledBorder("Graph"));
         panelGraph0.setLayout(new BoxLayout(panelGraph0, BoxLayout.PAGE_AXIS));
         panelGraph0.add(graph);
         layout.replace(actualGraph, panelGraph0);
@@ -78,8 +77,8 @@ public class PanelGraph extends JPanel {
         /*graphInfoLayout settings*/
         JLabel labelGraph0InfoCosts = new JLabel();
         JLabel labelGraph0InfoIncome = new JLabel();
-        labelGraph0InfoIncome.setText("income"); /*TODO locale*/
-        labelGraph0InfoCosts.setText("costs"); /*TODO locale*/
+        labelGraph0InfoIncome.setText("income");
+        labelGraph0InfoCosts.setText("costs");
         JComponent compCosts = new JComponent() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -112,7 +111,7 @@ public class PanelGraph extends JPanel {
         panelGraph0Info.add(Box.createRigidArea(new Dimension(50, 0)));
         panelGraph0Info.add(panel);
         panelGraph0Info.add(Box.createVerticalGlue());
-        panelGraph0Info.setBorder(BorderFactory.createTitledBorder("Graph Info"));  /*TODO locale*/
+        panelGraph0Info.setBorder(BorderFactory.createTitledBorder("Graph Info"));
         layout.replace(actualGraphInfo, panelGraph0Info);
         actualGraphInfo = panelGraph0Info;
     }
@@ -122,13 +121,13 @@ public class PanelGraph extends JPanel {
         graph.setPreferredSize(new Dimension(30 * numberOfDays + 95, 650));
         graph.setData(numberOfDays, items);
         panelGraph1.removeAll();
-        panelGraph1.setBorder(BorderFactory.createTitledBorder("Graph"));  /*TODO locale*/
+        panelGraph1.setBorder(BorderFactory.createTitledBorder("Graph"));
         panelGraph1.setLayout(new BoxLayout(panelGraph1, BoxLayout.PAGE_AXIS));
         panelGraph1.add(graph);
         layout.replace(actualGraph, panelGraph1);
         actualGraph = panelGraph1;
         /*graphInfoLayout settings*/
-        /*TODO*/
+
         layout.replace(actualGraphInfo, panelGraph1Info);
         actualGraphInfo = panelGraph1Info;
 
@@ -139,13 +138,13 @@ public class PanelGraph extends JPanel {
         graph.setPreferredSize(new Dimension(30 * numberOfDays + 95, 650));
         graph.setData(numberOfDays, items);
         panelGraph2.removeAll();
-        panelGraph2.setBorder(BorderFactory.createTitledBorder("Graph"));  /*TODO locale*/
+        panelGraph2.setBorder(BorderFactory.createTitledBorder("Graph"));
         panelGraph2.setLayout(new BoxLayout(panelGraph2, BoxLayout.PAGE_AXIS));
         panelGraph2.add(graph);
         layout.replace(actualGraph, panelGraph2);
         actualGraph = panelGraph2;
         /*graphInfoLayout settings*/
-        /*TODO*/
+
         layout.replace(actualGraphInfo, panelGraph2Info);
         actualGraphInfo = panelGraph2Info;
     }
@@ -155,13 +154,13 @@ public class PanelGraph extends JPanel {
         graph.setPreferredSize(new Dimension(30 * numberOfDays + 95, 650));
         graph.setData(numberOfDays, items);
         panelGraph3.removeAll();
-        panelGraph3.setBorder(BorderFactory.createTitledBorder("Graph"));  /*TODO locale*/
+        panelGraph3.setBorder(BorderFactory.createTitledBorder("Graph"));
         panelGraph3.setLayout(new BoxLayout(panelGraph3, BoxLayout.PAGE_AXIS));
         panelGraph3.add(graph);
         layout.replace(actualGraph, panelGraph3);
         actualGraph = panelGraph3;
         /*graphInfoLayout settings*/
-        /*TODO*/
+
         layout.replace(actualGraphInfo, panelGraph3Info);
         actualGraphInfo = panelGraph3Info;
     }
@@ -183,7 +182,7 @@ public class PanelGraph extends JPanel {
             case 3:
                 setGraph3();
                 break;
-            /*TODO dalsie grafy*/
+
         }
     }
     public void setData(java.util.List<Item> items, int numberOfDays){

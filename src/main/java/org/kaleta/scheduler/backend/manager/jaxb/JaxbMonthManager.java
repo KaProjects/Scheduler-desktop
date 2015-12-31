@@ -16,8 +16,7 @@ import javax.xml.validation.SchemaFactory;
 import java.io.File;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 23.7.2015
+ * Created by Stanislav Kaleta on 23.07.2015.
  */
 public class JaxbMonthManager implements MonthManager {
     private final String schemaUri;

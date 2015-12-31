@@ -15,6 +15,8 @@ import java.util.List;
 
 /**
  * Created by Stanislav Kaleta on 14.09.2015.
+ *
+ * Dialog which provides adding/editing item to/in selected month.
  */
 public class AddEditItemDialog extends JDialog {
     private boolean result;

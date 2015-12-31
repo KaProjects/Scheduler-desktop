@@ -32,5 +32,4 @@ public class AccountingPanelTableDelete extends KeyboardAction {
             getConfiguration().update(Configuration.ITEM_CHANGED);
         }
     }
-
 }

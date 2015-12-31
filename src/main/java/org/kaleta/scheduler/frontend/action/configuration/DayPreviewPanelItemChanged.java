@@ -15,21 +15,22 @@ public class DayPreviewPanelItemChanged extends ConfigurationAction {
     private Point position;
     private JProgressBar barIncome;
     private JProgressBar barExpense;
+    private String currency;
 
     public DayPreviewPanelItemChanged(Configurable configurable, Point position, JProgressBar barIncome, JProgressBar barExpense) {
         super(configurable);
         this.position = position;
         this.barIncome = barIncome;
         this.barExpense = barExpense;
+        currency = Service.configService().getSettings().getCurrency();
     }
 
     @Override
     protected void actionPerformed() {
         Day day = Service.dayService().getDayAt(position,getConfiguration().getSelectedMonthId());
 
-        String currency = Service.configService().getSettings().getCurrency();
         int dailyMaxIncome = Service.itemService().getMaxDailyIncome(getConfiguration().getSelectedMonthId());
-        int dailyMaxExpense = Service.itemService().getMaxDailyExpence(getConfiguration().getSelectedMonthId());
+        int dailyMaxExpense = Service.itemService().getMaxDailyExpense(getConfiguration().getSelectedMonthId());
         int dayIncome = 0;
         int dayExpense = 0;
         for (Item item : day.getItems()){

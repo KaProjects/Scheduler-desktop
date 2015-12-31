@@ -6,18 +6,16 @@ import java.awt.Color;
 import java.math.BigDecimal;
 
 /**
- * Author: Stanislav Kaleta
- * Date: 24.7.2015
+ * Created by Stanislav Kaleta on 24.07.2015.
  *
- * TODO documentation
+ * Provides methods for conversion between jaxb model and entity object.
  */
 public class ModelUtil {
 
     /**
-     * TODO documentation
-     *
-     * @param data
-     * @return
+     * Month conversion from entity object to jaxb model.
+     * @param data month entity object
+     * @return jaxb model of month
      */
     public static Month transformMonthToModel(org.kaleta.scheduler.backend.entity.Month data){
         Month model = new Month();
@@ -67,10 +65,9 @@ public class ModelUtil {
     }
 
     /**
-     * TODO documentation
-     *
-     * @param model
-     * @return
+     * Month conversion from jaxb model to entity object.
+     * @param model jaxb model of month
+     * @return month entity object
      */
     public static org.kaleta.scheduler.backend.entity.Month transformMonthToData(Month model){
         org.kaleta.scheduler.backend.entity.Month data = new org.kaleta.scheduler.backend.entity.Month();
@@ -115,10 +112,9 @@ public class ModelUtil {
     }
 
     /**
-     * TODO documentation
-     *
-     * @param data
-     * @return
+     * Global conversion from entity object to jaxb model.
+     * @param data Global entity object
+     * @return jaxb model of Global
      */
     public static Global transformGlobalToModel(org.kaleta.scheduler.backend.entity.Global data){
         Global model = new Global();
@@ -148,10 +144,9 @@ public class ModelUtil {
     }
 
     /**
-     * TODO documentation
-     *
-     * @param model
-     * @return
+     * Global conversion from jaxb model to entity object.
+     * @param model jaxb model of Global
+     * @return Global entity object
      */
     public static org.kaleta.scheduler.backend.entity.Global transformGlobalToData(Global model){
         org.kaleta.scheduler.backend.entity.Global data = new org.kaleta.scheduler.backend.entity.Global();
@@ -174,10 +169,9 @@ public class ModelUtil {
     }
 
     /**
-     * TODO documentation
-     *
-     * @param data
-     * @return
+     * Settings conversion from entity object to jaxb model.
+     * @param data Settings entity object
+     * @return jaxb model of Settings
      */
     public static Settings transformSettingsToModel(org.kaleta.scheduler.backend.entity.Settings data){
         Settings model = new Settings();
@@ -256,10 +250,9 @@ public class ModelUtil {
     }
 
     /**
-     * TODO documentation
-     *
-     * @param model
-     * @return
+     * Settings conversion from jaxb model to entity object.
+     * @param model jaxb model of Settings
+     * @return Settings entity object
      */
     public static org.kaleta.scheduler.backend.entity.Settings transformSettingsToData(Settings model){
         org.kaleta.scheduler.backend.entity.Settings data = new org.kaleta.scheduler.backend.entity.Settings();

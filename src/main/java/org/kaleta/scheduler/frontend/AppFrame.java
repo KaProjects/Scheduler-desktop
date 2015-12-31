@@ -24,6 +24,8 @@ import java.util.Locale;
 
 /**
  * Created by Stanislav Kaleta on 06.08.2015.
+ *
+ * Main frame for this app. Inits major components and handles app. wide configuration.
  */
 public class AppFrame extends JFrame implements Configuration {
     private int selectedDay;
@@ -151,9 +153,7 @@ public class AppFrame extends JFrame implements Configuration {
         statsMenu.setMnemonic(KeyEvent.VK_A);
         statsMenu.setEnabled(false);
         statsMenu.setToolTipText("Not implemented yet!");
-        // TODO create analytics menu
         menuBar.add(statsMenu);
-
 
         JMenu helpMenu = new JMenu("Help");
         helpMenu.setMnemonic(KeyEvent.VK_H);

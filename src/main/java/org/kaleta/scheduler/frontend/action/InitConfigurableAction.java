@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 
 /**
  * Created by Stanislav Kaleta on 30.10.2015.
+ *
+ * Action which inits configuration in every component which needs it.
  */
 public class InitConfigurableAction extends AbstractAction {
     private Configurable configurable;

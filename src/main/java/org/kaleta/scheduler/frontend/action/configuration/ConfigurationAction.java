@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 
 /**
  * Created by Stanislav Kaleta on 21.08.2015.
+ *
+ * Basic class for every action which impacts on configuration.
  */
 public abstract class ConfigurationAction extends AbstractAction {
     private Configurable configurable;

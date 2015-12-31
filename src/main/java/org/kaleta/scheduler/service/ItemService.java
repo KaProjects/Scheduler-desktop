@@ -10,11 +10,14 @@ import org.kaleta.scheduler.backend.manager.SettingsManager;
 import org.kaleta.scheduler.backend.manager.jaxb.JaxbMonthManager;
 import org.kaleta.scheduler.backend.manager.jaxb.JaxbSettingsManager;
 import org.kaleta.scheduler.frontend.Initializer;
+import org.kaleta.scheduler.frontend.common.ErrorDialog;
 
 import java.util.*;
 
 /**
  * Created by Stanislav Kaleta on 30.10.2015.
+ *
+ * Provides access to data source which is related to items.
  */
 public class ItemService {
 
@@ -23,8 +26,7 @@ public class ItemService {
     }
 
     /**
-     * TODO documentation
-     * @return
+     * Returns all item types from data source.
      */
     public List<UserType> getItemTypes() {
         try {
@@ -32,16 +34,16 @@ public class ItemService {
             Settings settings = manager.retrieveSettings();
             return settings.getItemTypes();
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }
 
     /**
-     * TODO documentation
-     * @param item
-     * @param monthId
-     * @param dayNumber
+     * Adds item for specified month and day to data source.
+     * @param item - item which has to be added.
+     * @param monthId - id of related month
+     * @param dayNumber - number of related day
      */
     public void addItem(Item item, Integer monthId, Integer dayNumber) {
         try {
@@ -62,15 +64,13 @@ public class ItemService {
             month.getItems().add(item);
             manager.updateMonth(month);
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }
 
     /**
-     * TODO documentation
-     * @param monthId
-     * @return
+     * Returns 10 item types which have been used the most in specified month until now.
      */
     public List<Item> getRecentlyUsedItems(Integer monthId) {
         try {
@@ -120,15 +120,15 @@ public class ItemService {
             }
             return subRecentlyUsed;
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }
 
     /**
-     * TODO documentation
-     * @param updatedItem
-     * @param monthId
+     * Updates item which is already in data source.
+     * @param updatedItem - item which has to be updated
+     * @param monthId - id of related month
      */
     public void updateItem(Item updatedItem, Integer monthId) {
         try {
@@ -153,15 +153,15 @@ public class ItemService {
                 manager.updateMonth(month);
             }
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }
 
     /**
-     * TODO documentation
-     * @param item
-     * @param monthId
+     * Deletes item from data source.
+     * @param item - item which has to be deleted
+     * @param monthId - id of related month
      */
     public void deleteItem(Item item, Integer monthId) {
         try {
@@ -170,17 +170,15 @@ public class ItemService {
             month.getItems().remove(item);
             manager.updateMonth(month);
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }
 
     /**
-     *
-     * @param monthId
-     * @return
+     * Returns value of daily expense which is maximum for specified month.
      */
-    public Integer getMaxDailyExpence(Integer monthId){
+    public Integer getMaxDailyExpense(Integer monthId){
         try {
             MonthManager manager = new JaxbMonthManager();
             Month month = manager.retrieveMonth(monthId);
@@ -203,15 +201,13 @@ public class ItemService {
             }
             return max;
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }
 
     /**
-     *
-     * @param monthId
-     * @return
+     * Returns value of daily income which is maximum for specified month.
      */
     public Integer getMaxDailyIncome(Integer monthId){
         try {
@@ -236,7 +232,7 @@ public class ItemService {
             }
             return max;
         } catch (ManagerException e) {
-            Initializer.LOG.severe(e.getMessage());
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
     }

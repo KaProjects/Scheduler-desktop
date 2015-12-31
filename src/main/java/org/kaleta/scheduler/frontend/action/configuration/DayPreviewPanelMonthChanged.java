@@ -19,6 +19,7 @@ public class DayPreviewPanelMonthChanged extends ConfigurationAction {
     private JLabel labelDayNumber;
     private JProgressBar barIncome;
     private JProgressBar barExpense;
+    private String currency;
 
     public DayPreviewPanelMonthChanged(JComponent target, Point position, JLabel labelDayNumber, JProgressBar barIncome, JProgressBar barExpense){
         super((Configurable) target);
@@ -27,6 +28,7 @@ public class DayPreviewPanelMonthChanged extends ConfigurationAction {
         this.labelDayNumber = labelDayNumber;
         this.barIncome = barIncome;
         this.barExpense = barExpense;
+        currency = Service.configService().getSettings().getCurrency();
     }
 
     @Override
@@ -54,9 +56,8 @@ public class DayPreviewPanelMonthChanged extends ConfigurationAction {
             target.setBorder(BorderFactory.createLineBorder(Color.GREEN));
         }
 
-        String currency = Service.configService().getSettings().getCurrency();
         int dailyMaxIncome = Service.itemService().getMaxDailyIncome(getConfiguration().getSelectedMonthId());
-        int dailyMaxExpense = Service.itemService().getMaxDailyExpence(getConfiguration().getSelectedMonthId());
+        int dailyMaxExpense = Service.itemService().getMaxDailyExpense(getConfiguration().getSelectedMonthId());
         int dayIncome = 0;
         int dayExpense = 0;
         for (Item item : day.getItems()){

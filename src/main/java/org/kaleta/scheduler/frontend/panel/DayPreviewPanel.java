@@ -8,6 +8,7 @@ import org.kaleta.scheduler.frontend.action.configuration.DayPreviewPanelItemCha
 import org.kaleta.scheduler.frontend.action.configuration.DayPreviewPanelMonthChanged;
 import org.kaleta.scheduler.frontend.action.mouse.DayPreviewPanelClicked;
 import org.kaleta.scheduler.frontend.common.ColorConstants;
+import org.kaleta.scheduler.service.Service;
 
 import javax.swing.*;
 import java.awt.*;
