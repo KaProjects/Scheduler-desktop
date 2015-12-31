@@ -42,3 +42,8 @@ Released: 31.12.2015
     Added possibility to import items from android app.
     Added possibility to export item types to android app.
     Minor bug fixes.
+
+## 2.1
+Released: in progress
+
+    ...
