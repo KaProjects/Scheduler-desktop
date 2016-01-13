@@ -7,7 +7,7 @@ import org.kaleta.scheduler.frontend.dialog.SelectMonthDialog;
 import org.kaleta.scheduler.service.Service;
 
 import javax.swing.*;
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -20,7 +20,6 @@ import java.math.BigDecimal;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Stanislav Kaleta on 13.11.2015.
@@ -230,22 +229,17 @@ public class ImportCollectedDataDialog extends JDialog{
             JOptionPane.showMessageDialog(this,"Nothing to import.");
             return false;
         }
-        SelectMonthDialog dialog = new SelectMonthDialog();
-        Map<Integer, Integer> orders = Service.monthService().getMonthsOrder();
-        String[] monthNames = new String[orders.size()];
-        Integer[] monthIds = new Integer[orders.size()];
-        int actuallySelectedMonthIndex = -1;
-        int index = 0;
-        for (Integer key : orders.keySet()) {
-            monthNames[index] = Service.monthService().getMonthName(key);
-            monthIds[index] = key;
-            index++;
+        List<Integer> orderedIds = Service.monthService().getMonthsOrder();
+        String[] monthNames = new String[orderedIds.size()];
+        for (Integer id : orderedIds) {
+            monthNames[orderedIds.indexOf(id)] = Service.monthService().getMonthName(id);
         }
-        dialog.setMonthNames(monthNames, actuallySelectedMonthIndex);
+        SelectMonthDialog dialog = new SelectMonthDialog();
+        dialog.setMonthNames(monthNames, -1);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
         if (dialog.getResult()) {
-            Integer selectedMonthId = monthIds[dialog.getSelectedMonthIndex()];
+            Integer selectedMonthId = orderedIds.get(dialog.getSelectedMonthIndex());
             String msg = month.getNotImportedItems().size() + " items from month \"" + month.getName() + "\" will be added to month \""
                     + Service.monthService().getMonthName(selectedMonthId) + "\". Continue?";
             int result = JOptionPane.showConfirmDialog(this, msg,"Adding items",JOptionPane.YES_NO_OPTION);

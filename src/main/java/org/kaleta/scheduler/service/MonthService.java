@@ -10,7 +10,8 @@ import org.kaleta.scheduler.backend.manager.jaxb.JaxbMonthManager;
 import org.kaleta.scheduler.frontend.Initializer;
 import org.kaleta.scheduler.frontend.common.ErrorDialog;
 
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * Created by Stanislav Kaleta on 30.10.2015.
@@ -56,18 +57,21 @@ public class MonthService {
     }
 
     /**
-     * Returns ordering of months as Map (key = month id, value = month order).
+     * Returns array of month ids sorted via order. (index 0 is first month id, index size - 1 is last month id)
      */
-    public Map<Integer,Integer> getMonthsOrder(){
+    public List<Integer> getMonthsOrder(){
         try {
             GlobalManager manager = new JaxbGlobalManager();
             Global global = manager.retrieveGlobal();
-            return global.getMonths();
+            Map<Integer,Integer> monthsMap = global.getMonths();
+            List<Integer> sortedIds = new LinkedList<>();
+            Stream<Map.Entry<Integer,Integer>> st = monthsMap.entrySet().stream();
+            st.sorted(Comparator.comparing(Map.Entry::getValue)).forEachOrdered(e -> sortedIds.add(e.getValue() - 1, e.getKey()));
+            return sortedIds;
         } catch (ManagerException e) {
             Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);
         }
-
     }
 
     /**

@@ -4,7 +4,7 @@ import org.kaleta.scheduler.frontend.Configurable;
 import org.kaleta.scheduler.service.Service;
 
 import java.awt.event.MouseEvent;
-import java.util.Map;
+import java.util.List;
 
 /**
  * Created by Stanislav Kaleta on 30.10.2015.
@@ -19,18 +19,9 @@ public class GlobalPanelMonthArrowClicked extends MouseAction {
 
     @Override
     protected void actionPerformed(MouseEvent e) {
-        Map<Integer, Integer> orders = Service.monthService().getMonthsOrder();
-
-        int monthId = getConfiguration().getSelectedMonthId();
-
-        Integer order = orders.get(monthId);
-
+        List<Integer> orderedIds = Service.monthService().getMonthsOrder();
+        int selectedMonthIndex = orderedIds.indexOf(getConfiguration().getSelectedMonthId());
         int modifier = (increase) ? 1 : -1;
-
-        for (Integer key : orders.keySet()) {
-            if (orders.get(key).equals(order + modifier)) {
-                getConfiguration().selectMonth(key);
-            }
-        }
+        getConfiguration().selectMonth(orderedIds.get(selectedMonthIndex + modifier));
     }
 }
