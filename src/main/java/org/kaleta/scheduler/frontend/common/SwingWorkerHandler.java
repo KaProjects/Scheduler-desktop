@@ -1,5 +1,6 @@
 package org.kaleta.scheduler.frontend.common;
 
+import org.kaleta.scheduler.frontend.Initializer;
 import org.kaleta.scheduler.service.ServiceFailureException;
 
 import javax.swing.*;
@@ -17,9 +18,13 @@ public abstract class SwingWorkerHandler {
             protected Void doInBackground() {
                 try {
                     runInBackground();
-                } catch (ServiceFailureException e){
-                    // No need to log here. Cause exc. is (should be) always logged before SFEx is thrown.
-                    new ErrorDialog(e).setVisible(true);
+                } catch (Exception e){
+                    ErrorDialog errorDialog = new ErrorDialog(e);
+                    if (!(e instanceof ServiceFailureException)){
+                        Initializer.LOG.severe(errorDialog.getExceptionStackTrace());
+                    }
+                    // No need to log SFEx. cause its (should be) always logged before its thrown.
+                    errorDialog.setVisible(true);
                 }
                 return null;
             }
