@@ -1,6 +1,7 @@
 package org.kaleta.scheduler.frontend;
 
 import org.kaleta.scheduler.backend.entity.Settings;
+import org.kaleta.scheduler.feature.analytics.itemsLine.ShowItemsLineGraph;
 import org.kaleta.scheduler.feature.exporting.ExportItemTypesAction;
 import org.kaleta.scheduler.feature.importing.ImportCollectedDataAction;
 import org.kaleta.scheduler.feature.importing.ImportOldDataAction;
@@ -118,7 +119,7 @@ public class AppFrame extends JFrame implements Configuration {
         JMenu importMenu = new JMenu("Import");
         importMenu.add(new MenuItemWrapper(new ImportOldDataAction(this),
                 KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK),
-                "Import whole month from version 1."));
+                "Import whole month from version 1.x"));
         importMenu.add(new MenuItemWrapper(new ImportCollectedDataAction(this),
                 KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK),
                 "Import items collected in android application to existing month."));
@@ -149,11 +150,11 @@ public class AppFrame extends JFrame implements Configuration {
                 KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK),
                 "Not implemented yet!"));
 
-        JMenu statsMenu = new JMenu("Analytics");
-        statsMenu.setMnemonic(KeyEvent.VK_A);
-        statsMenu.setEnabled(false);
-        statsMenu.setToolTipText("Not implemented yet!");
-        menuBar.add(statsMenu);
+        JMenu analyticsMenu = new JMenu("Analytics");
+        analyticsMenu.setMnemonic(KeyEvent.VK_A);
+        menuBar.add(analyticsMenu);
+        analyticsMenu.add(new MenuItemWrapper(new ShowItemsLineGraph(this)));
+        /*TODO rest*/
 
         JMenu helpMenu = new JMenu("Help");
         helpMenu.setMnemonic(KeyEvent.VK_H);

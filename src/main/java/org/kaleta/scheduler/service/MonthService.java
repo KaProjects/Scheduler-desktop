@@ -88,4 +88,25 @@ public class MonthService {
             throw new ServiceFailureException(e);
         }
     }
+
+    /**
+     * Retrieves all month from data source. (sorted via order)
+     */
+    public List<Month> retrieveAllMonths(){
+        try {
+            List<Integer> sortedIds = new LinkedList<>();
+            new JaxbGlobalManager().retrieveGlobal().getMonths().entrySet().stream()
+                    .sorted(Comparator.comparing(Map.Entry::getValue))
+                    .forEachOrdered(e -> sortedIds.add(e.getValue() - 1, e.getKey()));
+            MonthManager manager = new JaxbMonthManager();
+            List<Month> allMonths = new ArrayList<>();
+            for (Integer id : sortedIds){
+                allMonths.add(manager.retrieveMonth(id));
+            }
+            return allMonths;
+        } catch (ManagerException e) {
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
+            throw new ServiceFailureException(e);
+        }
+    }
 }
