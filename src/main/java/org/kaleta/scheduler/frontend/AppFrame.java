@@ -1,6 +1,8 @@
 package org.kaleta.scheduler.frontend;
 
 import org.kaleta.scheduler.backend.entity.Settings;
+import org.kaleta.scheduler.feature.analytics.ShowBalanceGraph;
+import org.kaleta.scheduler.feature.analytics.ShowExpenseStructureGraph;
 import org.kaleta.scheduler.feature.analytics.itemsLine.ShowItemsLineGraph;
 import org.kaleta.scheduler.feature.exporting.ExportItemTypesAction;
 import org.kaleta.scheduler.feature.importing.ImportCollectedDataAction;
@@ -153,8 +155,9 @@ public class AppFrame extends JFrame implements Configuration {
         JMenu analyticsMenu = new JMenu("Analytics");
         analyticsMenu.setMnemonic(KeyEvent.VK_A);
         menuBar.add(analyticsMenu);
-        analyticsMenu.add(new MenuItemWrapper(new ShowItemsLineGraph(this)));
-        /*TODO rest*/
+        analyticsMenu.add(new MenuItemWrapper(new ShowItemsLineGraph(this), "Deprecated"));
+        analyticsMenu.add(new MenuItemWrapper(new ShowBalanceGraph(this)));
+        analyticsMenu.add(new MenuItemWrapper(new ShowExpenseStructureGraph(this)));
 
         JMenu helpMenu = new JMenu("Help");
         helpMenu.setMnemonic(KeyEvent.VK_H);

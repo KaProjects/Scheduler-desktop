@@ -236,4 +236,26 @@ public class ItemService {
             throw new ServiceFailureException(e);
         }
     }
+
+    /**
+     * Returns expense items sorted via ItemType for specified month
+     */
+    public Map<String, Integer> getSortedExpenseItems(Integer monthId){
+        try {
+            Map<String, Integer> sortedItems = new HashMap<>();
+            for (Item item : new JaxbMonthManager().retrieveMonth(monthId).getItems()){
+                if (!item.getIncome()){
+                    if (sortedItems.keySet().contains(item.getType())){
+                        sortedItems.put(item.getType(), sortedItems.get(item.getType()) + item.getAmount().intValue());
+                    } else {
+                        sortedItems.put(item.getType(), item.getAmount().intValue());
+                    }
+                }
+            }
+            return sortedItems;
+        } catch (ManagerException e) {
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
+            throw new ServiceFailureException(e);
+        }
+    }
 }

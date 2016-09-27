@@ -14,6 +14,7 @@ public class ShowItemsLineGraph extends MenuAction {
 
     public ShowItemsLineGraph(Configuration config) {
         super(config, "Items Line Graph");
+        this.setEnabled(false);
     }
 
     @Override
