@@ -1,9 +1,9 @@
 package org.kaleta.scheduler.frontend;
 
 import org.kaleta.scheduler.backend.entity.Settings;
-import org.kaleta.scheduler.feature.analytics.ShowBalanceGraph;
-import org.kaleta.scheduler.feature.analytics.ShowExpenseStructureGraph;
-import org.kaleta.scheduler.feature.analytics.itemsLine.ShowItemsLineGraph;
+import org.kaleta.scheduler.feature.analytics.action.ShowBalanceGraph;
+import org.kaleta.scheduler.feature.analytics.action.ShowStructureGraph;
+import org.kaleta.scheduler.feature.analytics.dep.itemsLine.ShowItemsLineGraph;
 import org.kaleta.scheduler.feature.exporting.ExportItemTypesAction;
 import org.kaleta.scheduler.feature.importing.ImportCollectedDataAction;
 import org.kaleta.scheduler.feature.importing.ImportOldDataAction;
@@ -48,7 +48,7 @@ public class AppFrame extends JFrame implements Configuration {
         Dimension frameSize = this.getSize();
         int centerPosX = (screenSize.width - frameSize.width) / 2;
         int centerPosY = (screenSize.height - frameSize.height) / 2;
-        this.setLocation(centerPosX, centerPosY);
+        //this.setLocation(centerPosX, centerPosY); // TODO revert before release !!!
     }
 
     private void initComponents() {
@@ -157,7 +157,7 @@ public class AppFrame extends JFrame implements Configuration {
         menuBar.add(analyticsMenu);
         analyticsMenu.add(new MenuItemWrapper(new ShowItemsLineGraph(this), "Deprecated"));
         analyticsMenu.add(new MenuItemWrapper(new ShowBalanceGraph(this)));
-        analyticsMenu.add(new MenuItemWrapper(new ShowExpenseStructureGraph(this)));
+        analyticsMenu.add(new MenuItemWrapper(new ShowStructureGraph(this)));
 
         JMenu helpMenu = new JMenu("Help");
         helpMenu.setMnemonic(KeyEvent.VK_H);

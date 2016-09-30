@@ -1,10 +1,11 @@
-package org.kaleta.scheduler.feature.analytics.itemsLine;
+package org.kaleta.scheduler.feature.analytics.dep.itemsLine;
 
-import org.kaleta.scheduler.feature.analytics.GraphFrame;
+import org.kaleta.scheduler.feature.analytics.dep.GraphFrame;
 import org.kaleta.scheduler.frontend.Configuration;
 import org.kaleta.scheduler.frontend.action.menu.MenuAction;
 
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Frame;
 
 /**
  * Created by Stanislav Kaleta on 12.01.2016.
@@ -14,7 +15,7 @@ public class ShowItemsLineGraph extends MenuAction {
 
     public ShowItemsLineGraph(Configuration config) {
         super(config, "Items Line Graph");
-        this.setEnabled(false);
+        //this.setEnabled(false); // TODO revert before release !!!
     }
 
     @Override

@@ -94,16 +94,15 @@ public class MonthService {
      */
     public List<Month> retrieveAllMonths(){
         try {
-            List<Integer> sortedIds = new LinkedList<>();
-            new JaxbGlobalManager().retrieveGlobal().getMonths().entrySet().stream()
-                    .sorted(Comparator.comparing(Map.Entry::getValue))
-                    .forEachOrdered(e -> sortedIds.add(e.getValue() - 1, e.getKey()));
+            Set<Month> allMonths = new TreeSet<>();
             MonthManager manager = new JaxbMonthManager();
-            List<Month> allMonths = new ArrayList<>();
-            for (Integer id : sortedIds){
-                allMonths.add(manager.retrieveMonth(id));
+            Map<Integer, Integer> idOrderMap = new JaxbGlobalManager().retrieveGlobal().getMonths();
+            for (Integer id : idOrderMap.keySet()){
+                Month month = manager.retrieveMonth(id);
+                month.setOrder(idOrderMap.get(id));
+                allMonths.add(month);
             }
-            return allMonths;
+            return new ArrayList<>(allMonths);
         } catch (ManagerException e) {
             Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);

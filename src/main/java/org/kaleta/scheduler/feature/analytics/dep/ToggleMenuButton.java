@@ -1,7 +1,9 @@
-package org.kaleta.scheduler.feature.analytics;
+package org.kaleta.scheduler.feature.analytics.dep;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 

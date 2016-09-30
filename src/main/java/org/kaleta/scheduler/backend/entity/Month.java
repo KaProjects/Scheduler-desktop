@@ -8,7 +8,7 @@ import java.util.List;
  * Author: Stanislav Kaleta
  * Date: 11.7.2014
  */
-public class Month {
+public class Month implements Comparable{
     private Integer id;
     private String name;
     private Integer daysNumber;
@@ -16,6 +16,8 @@ public class Month {
     private List<Integer> publicFreeDays;
     private List<Task> tasks;
     private List<Item> items;
+
+    private Integer order = Integer.MAX_VALUE;
 
     public Month(){
         name = null;
@@ -70,6 +72,14 @@ public class Month {
         return items;
     }
 
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -99,5 +109,15 @@ public class Month {
         result = 31 * result + (tasks != null ? tasks.hashCode() : 0);
         result = 31 * result + (items != null ? items.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.order - ((Month)o).getOrder();
     }
 }

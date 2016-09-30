@@ -13,6 +13,7 @@ import org.kaleta.scheduler.frontend.Initializer;
 import org.kaleta.scheduler.frontend.common.ErrorDialog;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Stanislav Kaleta on 30.10.2015.
@@ -33,6 +34,20 @@ public class ItemService {
             SettingsManager manager = new JaxbSettingsManager();
             Settings settings = manager.retrieveSettings();
             return settings.getItemTypes();
+        } catch (ManagerException e) {
+            Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
+            throw new ServiceFailureException(e);
+        }
+    }
+
+    /**
+     * Returns income/expense item types from data source.
+     */
+    public List<UserType> getItemTypes(boolean income) {
+        try {
+            SettingsManager manager = new JaxbSettingsManager();
+            Settings settings = manager.retrieveSettings();
+            return settings.getItemTypes().stream().filter(type -> type.getSign().equals(income)).collect(Collectors.toList());
         } catch (ManagerException e) {
             Initializer.LOG.severe(ErrorDialog.getExceptionStackTrace(e));
             throw new ServiceFailureException(e);

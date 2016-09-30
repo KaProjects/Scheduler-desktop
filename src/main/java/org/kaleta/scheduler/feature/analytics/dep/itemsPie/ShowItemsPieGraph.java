@@ -1,4 +1,4 @@
-package org.kaleta.scheduler.feature.analytics.itemsPie;
+package org.kaleta.scheduler.feature.analytics.dep.itemsPie;
 
 /**
  * Author: Stanislav Kaleta

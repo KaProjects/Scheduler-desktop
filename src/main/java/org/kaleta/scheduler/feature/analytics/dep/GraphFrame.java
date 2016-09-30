@@ -1,8 +1,11 @@
-package org.kaleta.scheduler.feature.analytics;
+package org.kaleta.scheduler.feature.analytics.dep;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
  * Created by Stanislav Kaleta on 12.01.2016.

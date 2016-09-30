@@ -1,4 +1,4 @@
-package org.kaleta.scheduler.feature.analytics.balance;
+package org.kaleta.scheduler.feature.analytics.dep.balance;
 
 /**
  * Author: Stanislav Kaleta

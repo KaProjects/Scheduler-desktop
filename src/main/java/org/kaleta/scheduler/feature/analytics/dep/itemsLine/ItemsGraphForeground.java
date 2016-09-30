@@ -1,4 +1,4 @@
-package org.kaleta.scheduler.feature.analytics.itemsLine;
+package org.kaleta.scheduler.feature.analytics.dep.itemsLine;
 
 import javax.swing.*;
 

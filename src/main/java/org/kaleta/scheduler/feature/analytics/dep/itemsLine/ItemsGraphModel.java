@@ -1,12 +1,11 @@
-package org.kaleta.scheduler.feature.analytics.itemsLine;
+package org.kaleta.scheduler.feature.analytics.dep.itemsLine;
 
 import org.kaleta.scheduler.backend.entity.Item;
 import org.kaleta.scheduler.backend.entity.Month;
 import org.kaleta.scheduler.service.Service;
 
-import java.awt.*;
+import java.awt.Container;
 import java.util.*;
-import java.util.List;
 
 /**
  * Created by Stanislav Kaleta on 12.01.2016.
