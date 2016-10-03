@@ -7,7 +7,6 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
 import org.kaleta.scheduler.backend.entity.Item;
 import org.kaleta.scheduler.backend.entity.Month;
-import org.kaleta.scheduler.feature.analytics.SourceOptionsEditor;
 
 import javax.swing.*;
 import java.awt.Font;
@@ -21,13 +20,13 @@ import java.util.Map;
 public class StructureGraph extends JFrame {
 
     public StructureGraph(){
-        super("Income/Expense Structure");
+        super("Structure Graph");
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setLayout(new GridLayout(1,1));
 
 
 
-        SourceOptionsEditor sourceEditor = new SourceOptionsEditor();
+        StructureSourceOptionsEditor sourceEditor = new StructureSourceOptionsEditor();
         StructureViewOptionsEditor viewEditor = new StructureViewOptionsEditor();
         ChartPanel chartPanel = new ChartPanel(null);
         StructureList structureList = new StructureList();
@@ -52,7 +51,7 @@ public class StructureGraph extends JFrame {
         this.pack();
     }
 
-    private DefaultPieDataset createDataset(SourceOptionsEditor sourceEditor, StructureViewOptionsEditor viewEditor) {
+    private DefaultPieDataset createDataset(StructureSourceOptionsEditor sourceEditor, StructureViewOptionsEditor viewEditor) {
         DefaultPieDataset dataset = new DefaultPieDataset();
 
         Map<String, Integer> data = new HashMap<>();

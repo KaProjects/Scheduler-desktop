@@ -12,7 +12,7 @@ import java.awt.Component;
 public class ShowStructureGraph extends MenuAction {
 
     public ShowStructureGraph(Configuration config) {
-        super(config, "Income/Expense Structure");
+        super(config, "Structure Graph");
     }
 
     @Override

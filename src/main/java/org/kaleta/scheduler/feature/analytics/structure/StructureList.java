@@ -3,7 +3,6 @@ package org.kaleta.scheduler.feature.analytics.structure;
 import org.kaleta.scheduler.backend.entity.Item;
 import org.kaleta.scheduler.backend.entity.Month;
 import org.kaleta.scheduler.backend.entity.UserType;
-import org.kaleta.scheduler.feature.analytics.SourceOptionsEditor;
 import org.kaleta.scheduler.service.Service;
 
 import javax.swing.*;
@@ -28,7 +27,7 @@ public class StructureList extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
-    public void update(SourceOptionsEditor sourceEditor, StructureViewOptionsEditor viewEditor){
+    public void update(StructureSourceOptionsEditor sourceEditor, StructureViewOptionsEditor viewEditor){
         Map<String, Map<String, Integer>> items = new HashMap<>();
         for (UserType type : viewEditor.isIncome() ? incomeTypes : expenseTypes){
             items.put(type.getName(), new HashMap<>());

@@ -1,6 +1,6 @@
 package org.kaleta.scheduler.feature.analytics.action;
 
-import org.kaleta.scheduler.feature.analytics.BalanceGraph;
+import org.kaleta.scheduler.feature.analytics.balance.BalanceGraph;
 import org.kaleta.scheduler.frontend.Configuration;
 import org.kaleta.scheduler.frontend.action.menu.MenuAction;
 
@@ -12,7 +12,7 @@ import java.awt.Component;
 public class ShowBalanceGraph extends MenuAction {
 
     public ShowBalanceGraph(Configuration config) {
-        super(config, "Balance");
+        super(config, "Balance Graph");
     }
 
     @Override

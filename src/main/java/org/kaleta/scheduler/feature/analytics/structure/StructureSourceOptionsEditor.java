@@ -1,4 +1,4 @@
-package org.kaleta.scheduler.feature.analytics;
+package org.kaleta.scheduler.feature.analytics.structure;
 
 import org.kaleta.scheduler.backend.entity.Month;
 import org.kaleta.scheduler.service.Service;
@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 /**
  * Created by Stanislav Kaleta on 30.09.2016.
  */
-public class SourceOptionsEditor extends JPanel {
+public class StructureSourceOptionsEditor extends JPanel {
     private Map<Month, Boolean> months;
 
-    public SourceOptionsEditor(){
+    public StructureSourceOptionsEditor(){
         months = new TreeMap<>();
         for (Month month : Service.monthService().retrieveAllMonths()){
             months.put(month, Boolean.FALSE);
